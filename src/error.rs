@@ -1,3 +1,5 @@
+//! Error definictions combining *Json*, *Hyper*, *IO* and *Api* Errors.
+
 use json;
 use hyper;
 use std::io;
@@ -18,6 +20,8 @@ error_chain!{
     }
 
     errors {
-
+        ApiError{
+            description("unexpected response from service")
+        }
     }
 }

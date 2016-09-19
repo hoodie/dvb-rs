@@ -1,11 +1,10 @@
 extern crate dvb;
 
-use dvb::prelude::*;
+use dvb::Monitor;
 
 fn main() {
-    let st = Station::new("slub").city("Dresden");
-    println!("{:?}", st.get());
 
-    println!("{}", Station::new("NOE").get().access("0/0/0").unwrap());
-    println!("{:?}", Station::new("NOE").get_raw());
+    println!("Monitor");
+    println!("{:#?}", Monitor::new("HBF").stops().unwrap());
+
 }

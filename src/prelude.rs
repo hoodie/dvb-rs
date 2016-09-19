@@ -2,4 +2,5 @@
 
 pub use super::api::APIEndPoint;
 pub use super::station::Station;
+pub use super::monitor::Monitor;
 pub use super::util::EasyJson;

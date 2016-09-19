@@ -11,12 +11,16 @@ extern crate hyper;
 extern crate json;
 #[macro_use]
 extern crate error_chain;
+extern crate multimap;
 
 
-mod error;
+pub mod error;
 mod util;
 mod api;
 mod station;
+mod monitor;
+
 pub mod prelude;
 
 pub use station::Station;
+pub use monitor::Monitor;

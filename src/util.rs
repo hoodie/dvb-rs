@@ -18,10 +18,6 @@ pub trait EasyJson {
 
 
     /// Returns content at `path` in the json document.
-    ///
-    /// don't worry, I ripped this off from myself: https://github.com/hoodie/asciii-rs/blob/master/src/util/yaml.rs
-    /// literally ported this from yaml to json with regex
-    ///
     fn get_path<'a>(json: &'a JsonValue, path: &[&str]) -> Option<&'a JsonValue> {
         if let Some((&key, remainder)) = path.split_first() {
 

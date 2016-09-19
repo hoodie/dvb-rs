@@ -1,12 +1,14 @@
 [package]
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
+description = "An unofficial rust crates giving you a few options to query a collection of publicly accessible API methods for Dresden's public transport system."
+documentation = "https://docs.rs/dvb/"
+license = "MIT/Apache-2.0"
 name = "dvb"
 version = "0.1.0"
-description = "An unofficial rust crates giving you a few options to query a collection of publicly accessible API methods for Dresden's public transport system."
-
-license = "MIT/Apache-2.0"
 
 [dependencies]
 error-chain = "0.5"
 hyper = "0.9"
 json = "0.10"
+multimap = "*"
+url = "*"

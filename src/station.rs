@@ -1,10 +1,21 @@
+//! Holds `Station`
+
+use json::JsonValue;
+use multimap::MultiMap;
 
 use api::APIEndPoint;
+use error::{Result,ErrorKind};
 
+/// API Url for Stations
+pub const URL: &'static str = "http://widgets.vvo-online.de/abfahrtsmonitor/Haltestelle.do";
+
+/// Modeling the endpoint "abfahrtsmonitor/Haltestelle".
 pub struct Station<'a> {
-    pub station: &'a str,
-    pub city: &'a str,
+    station: &'a str,
+    city: &'a str,
+    lim: u32,
 }
+
 
 impl<'a> Station<'a> {
     /// Creates new `Station` from station name.
@@ -13,8 +24,8 @@ impl<'a> Station<'a> {
         Station {
             station: name,
             city: "Dresden",
+            lim: 3
         }
-
     }
 
     /// Modifies the stations city.
@@ -22,14 +33,29 @@ impl<'a> Station<'a> {
         self.city = city;
         self
     }
+
+    pub fn results(&self) -> Result<MultiMap<String,(String,String)>>{
+        let data = try!(self.get());
+
+        if let Some(&JsonValue::Array(ref ja)) = data.members().nth(1){
+            let stations = ja.iter().filter_map(|st_ja| {
+                if let &JsonValue::Array(ref st_a) = st_ja {
+                    if let (Some(station), Some(city), Some(id)) = (st_a[0].as_str(), st_a[1].as_str(), st_a[2].as_str()){
+                        Some((city.to_string(), (station.to_string(), id.to_string())))
+                    } else {None}
+                } else {None}
+            }).collect();
+            Ok(stations)
+        } else {Err(ErrorKind::ApiError.into())}
+    }
 }
 
 impl<'a> APIEndPoint for Station<'a> {
     fn url(&self) -> String {
-        let base_url = "http://widgets.vvo-online.de/abfahrtsmonitor/Haltestelle.do";
-        format!("{base}?ort={city}&vz=0&hst={begin}",
-                base = base_url,
+        format!("{base}?ort={city}&hst={begin}&lim={lim}",
+                base = URL,
                 city = &self.city,
+                lim = self.lim,
                 begin = &self.station)
     }
 }
