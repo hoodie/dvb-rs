@@ -38,14 +38,14 @@ impl<'a> Station<'a> {
         let data = try!(self.get());
 
         if let Some(&JsonValue::Array(ref ja)) = data.members().nth(1){
-            let stations = ja.iter().filter_map(|st_ja| {
+            ja.iter().map(|st_ja| {
                 if let &JsonValue::Array(ref st_a) = st_ja {
                     if let (Some(station), Some(city), Some(id)) = (st_a[0].as_str(), st_a[1].as_str(), st_a[2].as_str()){
-                        Some((city.to_string(), (station.to_string(), id.to_string())))
-                    } else {None}
-                } else {None}
-            }).collect();
-            Ok(stations)
+                        Ok((city.to_string(), (station.to_string(), id.to_string())))
+                    } else {Err(ErrorKind::ApiError.into())}
+                } else {Err(ErrorKind::ApiError.into())}
+            })
+            .collect::<Result<MultiMap<String,(String,String)>>>()
         } else {Err(ErrorKind::ApiError.into())}
     }
 }

@@ -1,10 +1,12 @@
 extern crate dvb;
 
-use dvb::Monitor;
+use dvb::prelude::*;
 
 fn main() {
 
-    println!("Monitor");
-    println!("{:#?}", Monitor::new("HBF").stops().unwrap());
+    //println!("{:#?}", Station::new("SLUB").results().unwrap());
+
+    //rintln!("Monitor");
+    println!("{:#?}", Monitor::new("SLUB").by_line().unwrap());
 
 }

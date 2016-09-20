@@ -1,11 +1,23 @@
-//!  An unofficial rust crates giving you a few options to query a collection of publicly accessible API methods for Dresden's public transport system.
+//! An unofficial rust crates giving you a few options to query a collection of publicly accessible API methods for Dresden's public transport system.
 //!
-//! # Example
+//! Currently the endpoints are supported:
+//!
+//! ## Station
+//! `http://widgets.vvo-online.de/abfahrtsmonitor/Haltestelle.do`
 //!
 //! ```rust
-//! use dvb::prelude::*;
-//! println!("{:#?}", Station::new("Slub").get().unwrap());
+//! # use dvb::prelude::*;
+//! Station::new("Slub").results();
 //! ```
+//!
+//! ## Monitor
+//! `http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do`
+//!
+//! ```rust
+//! # use dvb::prelude::*;
+//! Monitor::new("HBF").by_line();
+//! ```
+//!
 
 extern crate hyper;
 extern crate json;
@@ -24,3 +36,6 @@ pub mod prelude;
 
 pub use station::Station;
 pub use monitor::Monitor;
+
+pub use station::URL as STATION_URL;
+pub use monitor::URL as MONITOR_URL;

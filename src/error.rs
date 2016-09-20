@@ -1,4 +1,5 @@
 //! Error definictions combining *Json*, *Hyper*, *IO* and *Api* Errors.
+//! This is generated using [error-chain](https://crates.io/crates/error-chain).
 
 use json;
 use hyper;

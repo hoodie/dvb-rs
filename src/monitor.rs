@@ -4,7 +4,7 @@ use json::JsonValue;
 use multimap::MultiMap;
 
 use api::APIEndPoint;
-use error::Result;
+use error::{Result,ErrorKind};
 
 /// API Url for Monitor
 pub const URL: &'static str = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do";
@@ -36,11 +36,11 @@ impl<'a> Monitor<'a> {
     }
 
 
-    pub fn stops(&self) -> Result<MultiMap<String, (String, u32)>> {
-        Ok(
-            try!(self.get())
+    /// Gives you lists tuples `(direction:String, time-to-departure:u32)` by line name
+    pub fn by_line(&self) -> Result<MultiMap<String, (String, u32)>> {
+        let mmap = try!(self.get())
             .members()
-            .filter_map(|stop| {
+            .map(|stop| {
                 match stop {
                     &JsonValue::Array(ref a) => {
                         match (a[0].as_str(), a[1].as_str(), a[2].as_str().and_then(|s| s.parse::<u32>().ok()))
@@ -51,7 +51,11 @@ impl<'a> Monitor<'a> {
                     }
                     _ => None
                 }
-            }).collect())
+            }).collect();
+        match mmap{
+            Some(mmap) => Ok(mmap),
+            None => Err(ErrorKind::ApiError.into())
+        }
     }
 }
 

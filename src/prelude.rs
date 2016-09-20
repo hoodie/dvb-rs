@@ -1,4 +1,4 @@
-//! Everything you're gonna need to import;
+//! Everything you're ever going to need to import;
 
 pub use super::api::APIEndPoint;
 pub use super::station::Station;

@@ -6,7 +6,6 @@ dependencies = [
  "hyper 0.9.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "json 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "multimap 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "url 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
