@@ -4,7 +4,7 @@ description = "An unofficial rust crates giving you a few options to query a col
 documentation = "https://docs.rs/dvb/"
 license = "MIT/Apache-2.0"
 name = "dvb"
-version = "0.1.0"
+version = "0.2.0"
 
 [dependencies]
 error-chain = "0.5"
