@@ -15,22 +15,24 @@
 //!
 //! ```rust
 //! # use dvb::prelude::*;
-//! Monitor::new("HBF").by_line();
+//! Monitor::new("HBF").departures_by_line();
 //! ```
 //!
 
 extern crate hyper;
 extern crate json;
-#[macro_use]
-extern crate error_chain;
+extern crate regex;
 extern crate multimap;
 
+#[macro_use] extern crate error_chain;
+#[macro_use] extern crate lazy_static;
 
 pub mod error;
 mod util;
 mod api;
 mod station;
 mod monitor;
+mod line;
 
 pub mod prelude;
 

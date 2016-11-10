@@ -6,7 +6,7 @@ fn main() {
 
     //println!("{:#?}", Station::new("SLUB").results().unwrap());
 
-    //rintln!("Monitor");
-    println!("{:#?}", Monitor::new("SLUB").by_line().unwrap());
+    println!("Monitor");
+    println!("{:#?}", Monitor::new("Kaitzer Straße").departures_by_line().unwrap());
 
 }
