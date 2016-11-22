@@ -8,11 +8,10 @@ use std::io;
 error_chain!{
 
     types {
-        Error, ErrorKind, ChainErr, Result;
+        Error, ErrorKind, Result;
     }
 
-    links {
-    }
+    links { }
 
     foreign_links {
         json::Error, Json;

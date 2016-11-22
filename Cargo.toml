@@ -7,9 +7,9 @@ name = "dvb"
 version = "0.3.0"
 
 [dependencies]
-error-chain = "0.5"
+error-chain = "0.6"
 hyper = "0.9"
-json = "0.10"
-lazy_static = "*"
+json = "0.11"
+lazy_static = "0.2"
 multimap = "0.3"
-regex = "*"
+regex = "0.1"
