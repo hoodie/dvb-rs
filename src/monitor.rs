@@ -1,64 +1,50 @@
-//! Holds `Monitor`
+use reqwest;
+use error::Result;
+use common::{ArrivalState, Mot, Status};
 
-use multimap::MultiMap;
-
-use api::APIEndPoint;
-use error::{Result,ErrorKind};
-use line::{Line,Departure};
-
-/// API Url for Monitor
-pub const URL: &'static str = "http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do";
-
-/// Modeling the endpoint "abfahrtsmonitor/Abfahrten".
-pub struct Monitor<'a> {
-    name: &'a str,
-    city: &'a str,
-    lim: u32,
-    vz: u32,
+#[derive(Serialize, Debug, Default)]
+pub struct Config<'a> {
+    pub stopid: &'a str,
+    pub limit: Option<u32>,
+    pub time: Option<&'a str>,
+    pub isarrival: Option<bool>,
+    pub shorttermchanges: Option<bool>,
+    pub mot: Option<&'a [Mot]>
 }
 
-impl<'a> Monitor<'a> {
-    /// Creates new `Monitor` from name.
-    /// City defaults to `""`.
-    pub fn new(name: &'a str) -> Self {
-        Monitor {
-            name: name,
-            city: "",
-            lim: 0,
-            vz: 0,
-        }
-    }
-
-    /// Modifies the monitors city.
-    pub fn city(mut self, city: &'a str) -> Self {
-        self.city = city;
-        self
-    }
-
-
-    /// Gives you a list b
-    pub fn departures(&self) -> Result<Vec<Departure>> {
-        try!(self.get())
-            .members()
-            .map( Departure::from_json)
-            .collect::<Option<_>>()
-            .ok_or(ErrorKind::ApiError.into())
-    }
-
-    /// Gives you lists tuples `(direction:String, time-to-departure:u32)` by line name
-    pub fn departures_by_line(&self) -> Result<MultiMap<Line,Departure>> {
-        Ok(try!(self.departures()).into_iter().map(|d| (d.line.clone(), d)).collect())
-    }
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "PascalCase")]
+pub struct Departure {
+    id: String,
+    line_name: String,
+    direction: String,
+    // platform
+    mot: Mot,
+    real_time: Option<String>,
+    state: Option<ArrivalState>,
+    route_changes: Option<Vec<String>>,
+    // diva
 }
 
-impl<'a> APIEndPoint for Monitor<'a> {
-    fn url(&self) -> String {
-        format!("{base}?ort={ort}&vz={vz}&hst={stop}&lim={lim}",
-                base = URL,
-                ort  = &self.city,
-                lim  = self.lim,
-                vz   = self.vz,
-                stop = &self.name
-                )
-    }
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "PascalCase")]
+pub struct DepartureMonitor {
+    name: String,
+    status: Status,
+    place: String,
+    expiration_time: String,
+    departures: Vec<Departure>
+}
+
+pub fn departure_monitor(config: Config) -> Result<DepartureMonitor> {
+    const URL: &str = "https://webapi.vvo-online.de/dm";
+
+    let result = reqwest::Client::new()
+        .post(URL)
+        .json(&config)
+        .send()?
+        .json()?;
+
+    Ok(result)
+
 }

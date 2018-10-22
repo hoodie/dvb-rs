@@ -1,22 +1,20 @@
 //! Error definictions combining *Json*, *Hyper*, *IO* and *Api* Errors.
 //! This is generated using [error-chain](https://crates.io/crates/error-chain).
 
-use json;
-use hyper;
+use reqwest;
 use std::io;
 
 error_chain!{
 
     types {
-        Error, ErrorKind, Result;
+        Error, ErrorKind, ResultExt, Result;
     }
 
     links { }
 
     foreign_links {
-        json::Error, Json;
-        hyper::Error, Hyper;
-        io::Error, Io;
+        Reqwest(reqwest::Error);
+        Io(io::Error);
     }
 
     errors {

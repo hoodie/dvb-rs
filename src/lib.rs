@@ -19,25 +19,15 @@
 //! ```
 //!
 
-extern crate hyper;
-extern crate json;
+extern crate reqwest;
 extern crate regex;
-extern crate multimap;
-
+extern crate serde;
+extern crate serde_json;
+#[macro_use] extern crate serde_derive;
 #[macro_use] extern crate error_chain;
-#[macro_use] extern crate lazy_static;
 
+mod common;
 pub mod error;
-mod util;
-mod api;
-mod station;
-mod monitor;
-mod line;
 
-pub mod prelude;
-
-pub use station::Station;
-pub use monitor::Monitor;
-
-pub use station::URL as STATION_URL;
-pub use monitor::URL as MONITOR_URL;
+pub mod find;
+pub mod monitor;
