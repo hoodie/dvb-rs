@@ -21,13 +21,23 @@
 
 extern crate reqwest;
 extern crate regex;
+extern crate chrono;
+extern crate num_integer;
+extern crate pretty_assertions;
+
 extern crate serde;
 extern crate serde_json;
 #[macro_use] extern crate serde_derive;
+
 #[macro_use] extern crate error_chain;
 
 mod common;
+mod time;
 pub mod error;
 
 pub mod find;
 pub mod monitor;
+pub mod trip;
+
+pub use time::DvbTime;
+pub use common::Mot;

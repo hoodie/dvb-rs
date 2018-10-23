@@ -18,8 +18,11 @@ error_chain!{
     }
 
     errors {
-        ApiError{
+        ApiError {
             description("unexpected response from service")
+        }
+        DateParse {
+            description("can't parse date")
         }
     }
 }
