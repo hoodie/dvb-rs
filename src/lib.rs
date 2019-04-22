@@ -10,9 +10,13 @@ mod common;
 mod time;
 pub mod error;
 
+pub mod easy;
+
 pub mod find;
 pub mod monitor;
+#[doc(hidden)]
 pub mod trip;
 
 pub use crate::time::DvbTime;
 pub use crate::common::Mot;
+pub use crate::error::Result;
