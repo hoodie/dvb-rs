@@ -22,6 +22,7 @@ pub enum Mot {
 pub enum StatusCode {
     Ok,
     ValidationError,
+    ServiceError
 }
 
 #[derive(Serialize, Deserialize, Debug)]

@@ -23,7 +23,7 @@ impl DvbTime {
         let (mins, _sec) = div_mod_floor(offset, 60);
         let (hour, min) = div_mod_floor(mins, 60);
 
-        format!("/Date({}{}{:02}{:02})/", dt.timestamp(), sign, hour, min)
+        format!("/Date({}000{}{:02}{:02})/", dt.timestamp(), sign, hour, min)
     }
 
     pub fn wait(&self) -> String {
@@ -33,8 +33,21 @@ impl DvbTime {
 
         format!("{}min", min)
     }
+
+    pub fn now() -> Self {
+        DvbTime::from(Local::now())
+    }
+
+    pub fn in_n_minutes(mins: i64) -> Self {
+        DvbTime::from(Local::now() + chrono::Duration::minutes(mins))
+    }
 }
 
+impl Default for DvbTime {
+    fn default() -> Self {
+        Self::now()
+    }
+}
 
 impl Deref for DvbTime {
     type Target = DateTime<FixedOffset>;
@@ -60,12 +73,12 @@ impl FromStr for DvbTime {
     type Err = Box<Error>;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let re = Regex::new(r"^/Date\((\d*)\+(\d{2})(\d{2})\)/")?;
+        let re = Regex::new(r"^/Date\((\d*)(\+|-)(\d{2})(\d{2})\)/")?;
         if let Some(caps) = re.captures_iter(s).nth(0) {
             let raw_timestamp = &caps[1];
             let timestamp: i64 = raw_timestamp.parse()?;
-            let hours: i32 = caps[2].parse()?;
-            let mins: i32 = caps[3].parse()?;
+            let hours: i32 = caps[3].parse()?;
+            let mins: i32 = caps[4].parse()?;
 
             let multiplier = if raw_timestamp.ends_with("000") {1000} else {1};
 
@@ -143,5 +156,12 @@ mod tests {
 
         assert_eq!(parsed_timestamp, now.timestamp());
         assert_eq!(parsed_offset, original_offset);
+    }
+
+    #[test]
+    fn negative_offset() {
+        let dvb = "/Date(155581260000-0000)/";
+        let parsed = DvbTime::from_str(dvb);
+        println!("{:?}", parsed);
     }
 }

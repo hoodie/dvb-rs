@@ -34,12 +34,22 @@ pub struct DepartureMonitor {
     pub name: String,
     pub status: Status,
     pub place: String,
-    pub expiration_time: String,
-    pub departures: Vec<Departure>
+    pub expiration_time: Option<String>,
+    pub departures: Option<Vec<Departure>>
+}
+
+impl DepartureMonitor {
+    pub fn next_line<'a>(&'a self, line_name: &str) -> Option<&'a Departure> {
+        if let Some(ref deps) = self.departures {
+            deps.iter().find(|dep| dep.line_name == line_name)
+        } else {
+            None
+        }
+    }
 }
 
 pub fn departure_monitor(config: Config) -> Result<DepartureMonitor> {
-// pub fn departure_monitor(config: Config) -> Result<Value> {
+// pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
     const URL: &str = "https://webapi.vvo-online.de/dm";
 
     let result = reqwest::Client::new()
