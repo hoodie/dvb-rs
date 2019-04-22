@@ -5,19 +5,6 @@
 //! ## Station
 //! `http://widgets.vvo-online.de/abfahrtsmonitor/Haltestelle.do`
 //!
-//! ```rust
-//! # use dvb::prelude::*;
-//! Station::new("Slub").results();
-//! ```
-//!
-//! ## Monitor
-//! `http://widgets.vvo-online.de/abfahrtsmonitor/Abfahrten.do`
-//!
-//! ```rust
-//! # use dvb::prelude::*;
-//! Monitor::new("HBF").departures_by_line();
-//! ```
-//!
 
 extern crate reqwest;
 extern crate regex;
