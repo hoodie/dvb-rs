@@ -1,10 +1,6 @@
-use reqwest;
-use error::Result;
-
-use common::Status;
-
-use serde::de::{self, Deserialize, Deserializer, Visitor};
-use serde::ser::{Serialize, Serializer};
+use serde::de::{self, Deserializer, Visitor};
+use serde::ser::Serializer;
+use serde::{Serialize, Deserialize};
 
 use std::fmt;
 use std::str::FromStr;
@@ -12,6 +8,8 @@ use std::string::ToString;
 use std::error::Error;
 use std::result;
 
+use crate::error::Result;
+use crate::common::Status;
 
 #[derive(Debug)]
 pub struct Point {

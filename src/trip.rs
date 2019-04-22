@@ -1,8 +1,8 @@
-use reqwest;
 use serde_json;
-use error::Result;
+use serde::{Serialize, Deserialize};
 
-use common::Status;
+use crate::error::Result;
+use crate::common::Status;
 
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
@@ -20,7 +20,7 @@ pub struct Trip {
     status: Status,
 }
 
-pub fn trip_dtails(config: &Config) -> Result<Trip> {
+pub fn trip_details(config: &Config) -> Result<Trip> {
     const URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
     let result = reqwest::Client::new()

@@ -6,16 +6,6 @@
 //! `http://widgets.vvo-online.de/abfahrtsmonitor/Haltestelle.do`
 //!
 
-extern crate reqwest;
-extern crate regex;
-extern crate chrono;
-extern crate num_integer;
-extern crate pretty_assertions;
-
-extern crate serde;
-extern crate serde_json;
-#[macro_use] extern crate serde_derive;
-
 mod common;
 mod time;
 pub mod error;
@@ -24,5 +14,5 @@ pub mod find;
 pub mod monitor;
 pub mod trip;
 
-pub use time::DvbTime;
-pub use common::Mot;
+pub use crate::time::DvbTime;
+pub use crate::common::Mot;

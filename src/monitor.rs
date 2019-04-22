@@ -1,8 +1,8 @@
-use reqwest;
+use serde::{Serialize, Deserialize};
 
-use error::Result;
-use common::{ArrivalState, Mot, Status};
-use time::DvbTime;
+use crate::error::Result;
+use crate::common::{ArrivalState, Mot, Status};
+use crate::time::DvbTime;
 
 #[derive(Serialize, Debug, Default)]
 pub struct Config<'a> {

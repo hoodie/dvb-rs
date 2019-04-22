@@ -1,5 +1,3 @@
-extern crate dvb;
-
 use dvb::error::Result;
 
 fn find(query: &str) -> Result<dvb::find::Found> {

@@ -5,12 +5,12 @@ documentation = "https://docs.rs/dvb/"
 license = "MIT/Apache-2.0"
 name = "dvb"
 version = "0.3.0"
+edition = "2018"
 
 [dependencies]
 regex = "1.1"
 reqwest = "0.9"
-serde_derive = "1.0"
-serde = "1.0"
+serde = { version = "1.0", features = ["derive"]}
 serde_json = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
 num-integer = "0.1"
