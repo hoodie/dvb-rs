@@ -29,8 +29,6 @@ extern crate serde;
 extern crate serde_json;
 #[macro_use] extern crate serde_derive;
 
-#[macro_use] extern crate error_chain;
-
 mod common;
 mod time;
 pub mod error;

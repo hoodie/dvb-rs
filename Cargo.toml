@@ -7,12 +7,11 @@ name = "dvb"
 version = "0.3.0"
 
 [dependencies]
-error-chain = "0.12"
-regex = "1.0"
+regex = "1.1"
 reqwest = "0.9"
-serde_derive = "1.0.80"
-serde = "1.0.80"
-serde_json = "1.0.32"
+serde_derive = "1.0"
+serde = "1.0"
+serde_json = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
-num-integer = "0.1.39"
-pretty_assertions = "0.5.1"
+num-integer = "0.1"
+pretty_assertions = "0.6"

@@ -1,4 +1,4 @@
-use chrono::{self, prelude::*};
+use chrono::prelude::*;
 use num_integer::div_mod_floor;
 use regex::Regex;
 
@@ -74,7 +74,7 @@ impl FromStr for DvbTime {
             Ok(DvbTime(fo))
 
         } else {
-            bail!("nothing matched")
+            return Err("nothing matched".into())
         }
     }
 }
