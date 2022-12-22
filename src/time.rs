@@ -70,11 +70,11 @@ impl From<DateTime<FixedOffset>> for DvbTime {
 }
 
 impl FromStr for DvbTime {
-    type Err = Box<Error>;
+    type Err = Box<dyn Error>;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let re = Regex::new(r"^/Date\((\d*)(\+|-)(\d{2})(\d{2})\)/")?;
-        if let Some(caps) = re.captures_iter(s).nth(0) {
+        if let Some(caps) = re.captures(s) {
             let raw_timestamp = &caps[1];
             let timestamp: i64 = raw_timestamp.parse()?;
             let hours: i32 = caps[3].parse()?;
@@ -82,12 +82,12 @@ impl FromStr for DvbTime {
 
             let multiplier = if raw_timestamp.ends_with("000") {1000} else {1};
 
-            let fo = FixedOffset::east(hours * 3600 + mins * 60).timestamp(timestamp / multiplier, 0);
+            let fo = FixedOffset::east_opt(hours * 3600 + mins * 60).unwrap().timestamp_opt(timestamp / multiplier, 0).unwrap();
 
             Ok(DvbTime(fo))
 
         } else {
-            return Err("nothing matched".into())
+            Err("nothing matched".into())
         }
     }
 }

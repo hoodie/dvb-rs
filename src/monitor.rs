@@ -52,7 +52,7 @@ pub fn departure_monitor(config: Config) -> Result<DepartureMonitor> {
 // pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
     const URL: &str = "https://webapi.vvo-online.de/dm";
 
-    let result = reqwest::Client::new()
+    let result = reqwest::blocking::Client::new()
         .post(URL)
         .json(&config)
         .send()?

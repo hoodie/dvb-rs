@@ -20,7 +20,7 @@ pub struct Point {
 }
 
 impl FromStr for Point {
-    type Err = Box<Error>;
+    type Err = Box<dyn Error>;
 
     fn from_str(s: &str) -> ::std::result::Result<Self, Self::Err> {
         let parts: Vec<&str> = s.split('|').collect();
@@ -99,7 +99,7 @@ pub struct Found {
 pub fn find_point(config: &Config) -> Result<Found> {
     const URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
 
-    let result = reqwest::Client::new().post(URL).json(&config).send()?.json()?;
+    let result = reqwest::blocking::Client::new().post(URL).json(&config).send()?.json()?;
 
     Ok(result)
 }

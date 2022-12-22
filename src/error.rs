@@ -1,9 +1,7 @@
 //! Unchained Error implementation
 
 use reqwest;
-use std::io;
-use std::fmt;
-use std::error::{self, Error as _};
+use std::{fmt, io};
 
 #[derive(Debug)]
 pub enum Error {
@@ -17,24 +15,21 @@ pub type Result<T> = std::result::Result<T, Error>;
 
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.description())
+        match self {
+            Error::ApiError => write!(f, "unexpected response from service"),
+            Error::DateParse => write!(f, "can't parse date"),
+            Error::Reqwest(ref e) => write!(f, "{}", e),
+            Error::Io(ref e) => write!(f, "{}", e),
+        }
     }
 }
 
-impl error::Error for Error {
-    fn description(&self) -> &str {
-        match self {
-            Error::ApiError => "unexpected response from service",
-            Error::DateParse => "can't parse date",
-            Error::Reqwest(e) => e.description(),
-            Error::Io(e) => e.description(),
-        }
-    }
-    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+impl std::error::Error for Error {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match self {
             Error::Reqwest(e) => Some(e),
             Error::Io(e) => Some(e),
-            _ => None
+            _ => None,
         }
     }
 }

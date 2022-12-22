@@ -1,6 +1,5 @@
 //! unfinished
 
-use serde_json;
 use serde::{Serialize, Deserialize};
 
 use crate::error::Result;
@@ -56,7 +55,7 @@ pub struct Trip {
 pub fn trip_details(config: &Config) -> Result<Trip> {
     const URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
-    let result = reqwest::Client::new()
+    let result = reqwest::blocking::Client::new()
         .post(URL)
         .json(&config)
         .send()?
