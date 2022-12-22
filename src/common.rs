@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum ArrivalState {
@@ -22,7 +22,7 @@ pub enum Mot {
 pub enum StatusCode {
     Ok,
     ValidationError,
-    ServiceError
+    ServiceError,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

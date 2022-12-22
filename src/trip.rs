@@ -1,23 +1,23 @@
 //! unfinished
 
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
-use crate::error::Result;
 use crate::common::Status;
+use crate::error::Result;
 use crate::time::DvbTime;
 
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Config<'a> {
-    pub tripid:  &'a str,
+    pub tripid: &'a str,
     pub time: DvbTime,
-    pub stopid:  &'a str,
+    pub stopid: &'a str,
     pub mapdata: Option<bool>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
-pub struct Platform{
+pub struct Platform {
     name: String,
     r#type: String, // enum PlatformType {Platform}
 }
@@ -27,7 +27,7 @@ pub struct Platform{
 pub enum Position {
     Previous,
     Current,
-    Next
+    Next,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

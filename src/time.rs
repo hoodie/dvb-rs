@@ -5,12 +5,11 @@ use regex::Regex;
 use serde::de::{self, Deserialize, Deserializer, Visitor};
 use serde::ser::{Serialize, Serializer};
 
-use std::fmt;
-use std::str::FromStr;
-use std::ops::{Deref, Sub};
-use std::string::ToString;
 use std::error::Error;
-
+use std::fmt;
+use std::ops::{Deref, Sub};
+use std::str::FromStr;
+use std::string::ToString;
 
 #[derive(Debug)]
 pub struct DvbTime(DateTime<FixedOffset>);
@@ -19,7 +18,11 @@ impl DvbTime {
     fn stringify<T: TimeZone>(dt: &DateTime<T>) -> String {
         let offset = dt.offset().fix().local_minus_utc();
 
-        let (sign, offset) = if offset < 0 {('-', -offset)} else {('+', offset)};
+        let (sign, offset) = if offset < 0 {
+            ('-', -offset)
+        } else {
+            ('+', offset)
+        };
         let (mins, _sec) = div_mod_floor(offset, 60);
         let (hour, min) = div_mod_floor(mins, 60);
 
@@ -80,12 +83,18 @@ impl FromStr for DvbTime {
             let hours: i32 = caps[3].parse()?;
             let mins: i32 = caps[4].parse()?;
 
-            let multiplier = if raw_timestamp.ends_with("000") {1000} else {1};
+            let multiplier = if raw_timestamp.ends_with("000") {
+                1000
+            } else {
+                1
+            };
 
-            let fo = FixedOffset::east_opt(hours * 3600 + mins * 60).unwrap().timestamp_opt(timestamp / multiplier, 0).unwrap();
+            let fo = FixedOffset::east_opt(hours * 3600 + mins * 60)
+                .unwrap()
+                .timestamp_opt(timestamp / multiplier, 0)
+                .unwrap();
 
             Ok(DvbTime(fo))
-
         } else {
             Err("nothing matched".into())
         }
@@ -101,7 +110,8 @@ impl ToString for DvbTime {
 
 impl Serialize for DvbTime {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where S: Serializer
+    where
+        S: Serializer,
     {
         serializer.serialize_str(&self.to_string())
     }
@@ -109,7 +119,8 @@ impl Serialize for DvbTime {
 
 impl<'de> Deserialize<'de> for DvbTime {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-        where D: Deserializer<'de>
+    where
+        D: Deserializer<'de>,
     {
         deserializer.deserialize_str(DvbTimeVisitor)
     }
@@ -121,7 +132,10 @@ impl<'de> Visitor<'de> for DvbTimeVisitor {
     type Value = DvbTime;
 
     fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-        write!(formatter, "a string that follows that \"/Date(...)/\" format ")
+        write!(
+            formatter,
+            "a string that follows that \"/Date(...)/\" format "
+        )
     }
 
     fn visit_str<E>(self, s: &str) -> Result<Self::Value, E>
@@ -130,11 +144,10 @@ impl<'de> Visitor<'de> for DvbTimeVisitor {
     {
         match DvbTime::from_str(s) {
             Ok(dt) => Ok(dt),
-            Err(_) => Err(de::Error::invalid_value(de::Unexpected::Str(s), &self))
+            Err(_) => Err(de::Error::invalid_value(de::Unexpected::Str(s), &self)),
         }
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -147,9 +160,8 @@ mod tests {
         let parsed = dvb.parse::<DvbTime>();
         println!("now: {}\ndvb: {}\nparsed: {:?}", now, dvb, parsed);
 
-
         let (parsed_timestamp, parsed_offset) = parsed
-            .map(|dt| (DateTime::timestamp(&dt.0) , dt.0.offset().local_minus_utc()) )
+            .map(|dt| (DateTime::timestamp(&dt.0), dt.0.offset().local_minus_utc()))
             .unwrap();
 
         let original_offset = now.offset().local_minus_utc();

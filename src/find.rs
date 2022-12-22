@@ -1,22 +1,22 @@
 use serde::de::{self, Deserializer, Visitor};
 use serde::ser::Serializer;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
+use std::error::Error;
 use std::fmt;
+use std::result;
 use std::str::FromStr;
 use std::string::ToString;
-use std::error::Error;
-use std::result;
 
-use crate::error::Result;
 use crate::common::Status;
+use crate::error::Result;
 
 #[derive(Debug)]
 pub struct Point {
     pub id: String,
     pub city: String,
     pub name: String,
-    pub coords: (i64, i64)
+    pub coords: (i64, i64),
 }
 
 impl FromStr for Point {
@@ -36,14 +36,20 @@ impl FromStr for Point {
 
 impl ToString for Point {
     fn to_string(&self) -> String {
-        let Point{id, city, name, coords: (lon, lat)} = self;
+        let Point {
+            id,
+            city,
+            name,
+            coords: (lon, lat),
+        } = self;
         format!("{}||{}|{}|{}|{}|0||", id, city, name, lon, lat)
     }
 }
 
 impl Serialize for Point {
     fn serialize<S>(&self, serializer: S) -> result::Result<S::Ok, S::Error>
-        where S: Serializer
+    where
+        S: Serializer,
     {
         serializer.serialize_str(&self.to_string())
     }
@@ -51,7 +57,8 @@ impl Serialize for Point {
 
 impl<'de> Deserialize<'de> for Point {
     fn deserialize<D>(deserializer: D) -> result::Result<Self, D::Error>
-        where D: Deserializer<'de>
+    where
+        D: Deserializer<'de>,
     {
         deserializer.deserialize_str(PointVisitor)
     }
@@ -62,7 +69,10 @@ impl<'de> Visitor<'de> for PointVisitor {
     type Value = Point;
 
     fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-        write!(formatter, "a string that follows that \"id||city|name||lon|lat|0||\" format ")
+        write!(
+            formatter,
+            "a string that follows that \"id||city|name||lon|lat|0||\" format "
+        )
     }
 
     fn visit_str<E>(self, s: &str) -> result::Result<Self::Value, E>
@@ -71,20 +81,18 @@ impl<'de> Visitor<'de> for PointVisitor {
     {
         match Point::from_str(s) {
             Ok(p) => Ok(p),
-            Err(_) => Err(de::Error::invalid_value(de::Unexpected::Str(s), &self))
+            Err(_) => Err(de::Error::invalid_value(de::Unexpected::Str(s), &self)),
         }
     }
 }
 
-
-
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Config<'a> {
-    pub query:  &'a str,
+    pub query: &'a str,
     pub limit: Option<u32>,
     pub stops_only: Option<bool>,
-    pub assigedstops: Option<bool>
+    pub assigedstops: Option<bool>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -99,11 +107,14 @@ pub struct Found {
 pub fn find_point(config: &Config) -> Result<Found> {
     const URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
 
-    let result = reqwest::blocking::Client::new().post(URL).json(&config).send()?.json()?;
+    let result = reqwest::blocking::Client::new()
+        .post(URL)
+        .json(&config)
+        .send()?
+        .json()?;
 
     Ok(result)
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -323,14 +334,12 @@ mod tests {
             "40003205||Berlin|Washingtonplatz/Hauptbahnhof|0|0|0||",
             "31206157||Weimar (Thür)|Weimar, Hauptbahnhof|0|0|0||",
             "27011412||Leipzig|Wintergartenstr./ Hauptbahnhof|5689917|4526825|0||",
-            "28500001||Lübeck|ZOB/Hauptbahnhof|0|0|0||"
+            "28500001||Lübeck|ZOB/Hauptbahnhof|0|0|0||",
         ];
 
         points
             .iter()
-            .map(|p| (Point::from_str(p), p) )
-            .for_each(|(p, s)| {
-                assert_eq!(&p.unwrap().to_string(), s)
-            });
+            .map(|p| (Point::from_str(p), p))
+            .for_each(|(p, s)| assert_eq!(&p.unwrap().to_string(), s));
     }
 }

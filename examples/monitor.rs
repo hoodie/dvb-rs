@@ -1,9 +1,8 @@
-#[allow(unused_imports)]
-use dvb::{ monitor, trip, Mot, DvbTime};
 use dvb::Result;
+#[allow(unused_imports)]
+use dvb::{monitor, trip, DvbTime, Mot};
 
 fn main() -> Result<()> {
-
     let monitor_config = monitor::Config {
         stopid: "Dresden HBF",
         mot: Some(&[Mot::Tram]),
@@ -28,8 +27,6 @@ fn main() -> Result<()> {
         println!("{:#?}", details);
         println!("{:#?}", next_drei);
     }
-
-
 
     Ok(())
 }

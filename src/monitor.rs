@@ -1,7 +1,7 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
-use crate::error::Result;
 use crate::common::{ArrivalState, Mot, Status};
+use crate::error::Result;
 use crate::time::DvbTime;
 
 #[derive(Serialize, Debug, Default)]
@@ -11,7 +11,7 @@ pub struct Config<'a> {
     pub time: Option<&'a str>,
     pub isarrival: Option<bool>,
     pub shorttermchanges: Option<bool>,
-    pub mot: Option<&'a [Mot]>
+    pub mot: Option<&'a [Mot]>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -35,7 +35,7 @@ pub struct DepartureMonitor {
     pub status: Status,
     pub place: String,
     pub expiration_time: Option<String>,
-    pub departures: Option<Vec<Departure>>
+    pub departures: Option<Vec<Departure>>,
 }
 
 impl DepartureMonitor {
@@ -49,7 +49,7 @@ impl DepartureMonitor {
 }
 
 pub fn departure_monitor(config: Config) -> Result<DepartureMonitor> {
-// pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
+    // pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
     const URL: &str = "https://webapi.vvo-online.de/dm";
 
     let result = reqwest::blocking::Client::new()

@@ -7,8 +7,8 @@
 //!
 
 mod common;
-mod time;
 pub mod error;
+mod time;
 
 // pub mod easy;
 
@@ -16,6 +16,6 @@ pub mod find;
 pub mod monitor;
 pub mod trip;
 
-pub use crate::time::DvbTime;
 pub use crate::common::Mot;
 pub use crate::error::Result;
+pub use crate::time::DvbTime;
