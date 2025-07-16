@@ -31,9 +31,9 @@ pub struct Departure {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct DepartureMonitor {
-    pub name: String,
+    pub name: Option<String>,
     pub status: Status,
-    pub place: String,
+    pub place: Option<String>,
     pub expiration_time: Option<String>,
     pub departures: Option<Vec<Departure>>,
 }
