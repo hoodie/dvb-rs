@@ -33,22 +33,22 @@ pub enum Position {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Stop {
-    id: String,
-    name: String,
-    place: String,
-    platform: Platform,
-    latitude: i64,
-    longitude: i64,
-    position: Position,
-    scheduled_time: bool,
-    time: DvbTime,
+    pub id: String,
+    pub name: String,
+    pub place: String,
+    pub platform: Platform,
+    pub latitude: i64,
+    pub longitude: i64,
+    pub position: Position,
+    pub scheduled_time: Option<bool>,
+    pub time: DvbTime,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Trip {
     // stops: Option<Vec<serde_json::Value>>,
-    stops: Option<Vec<Stop>>,
+    pub stops: Option<Vec<Stop>>,
     status: Status,
 }
 

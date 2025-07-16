@@ -5,7 +5,7 @@ documentation = "https://docs.rs/dvb/"
 license = "MIT/Apache-2.0"
 name = "dvb"
 version = "0.4.1"
-edition = "2018"
+edition = "2024"
 
 [dependencies]
 regex = "1.1"
@@ -20,5 +20,5 @@ features = ["json", "blocking"]
 
 [dependencies.chrono]
 version = "0.4"
-default_features = false
+default-features = false
 features = ["clock", "std", "serde"]
