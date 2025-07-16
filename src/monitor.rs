@@ -48,6 +48,7 @@ impl DepartureMonitor {
     }
 }
 
+// pub fn departure_monitor(config: Config) -> Result<Value> {
 pub fn departure_monitor(config: Config) -> Result<DepartureMonitor> {
     // pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
     const URL: &str = "https://webapi.vvo-online.de/dm";

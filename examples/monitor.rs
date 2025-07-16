@@ -1,6 +1,4 @@
-use dvb::Result;
-#[allow(unused_imports)]
-use dvb::{monitor, trip, DvbTime, Mot};
+use dvb::{monitor, trip, DvbTime, Mot, Result};
 
 fn main() -> Result<()> {
     let monitor_config = monitor::Config {

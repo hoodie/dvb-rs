@@ -10,7 +10,7 @@ mod common;
 pub mod error;
 mod time;
 
-// pub mod easy;
+pub mod easy;
 
 pub mod find;
 pub mod monitor;

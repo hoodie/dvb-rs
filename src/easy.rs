@@ -24,4 +24,3 @@ pub fn monitor(stopid: &str) -> Result<monitor::DepartureMonitor> {
 
     Ok(monitor)
 }
-

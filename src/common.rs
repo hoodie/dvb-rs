@@ -16,6 +16,7 @@ pub enum Mot {
     Cableway,
     Ferry,
     HailedSharedTaxi,
+    PlusBus,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
