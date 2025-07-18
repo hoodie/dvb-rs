@@ -9,7 +9,7 @@ fn main() -> Result<()> {
     let query = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
 
     let found = find(&query)?;
-    let Some(point) = found.points.get(0) else {
+    let Some(point) = found.points.first() else {
         eprintln!("No stop found for '{query}'");
         return Ok(());
     };

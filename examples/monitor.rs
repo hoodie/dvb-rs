@@ -5,13 +5,13 @@ fn main() -> Result<()> {
     let query2 = std::env::args().nth(2).unwrap_or("WalpurgisStraße".into());
 
     let start = find(&query1)?;
-    let Some(start) = start.points.get(0) else {
+    let Some(start) = start.points.first() else {
         eprintln!("No stop found for '{query1}'");
         return Ok(());
     };
 
     let destination = find(&query2)?;
-    let Some(destination) = destination.points.get(0) else {
+    let Some(destination) = destination.points.first() else {
         eprintln!("No stop found for '{query2}'");
         return Ok(());
     };
