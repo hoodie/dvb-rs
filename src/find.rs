@@ -34,15 +34,15 @@ impl FromStr for Point {
     }
 }
 
-impl ToString for Point {
-    fn to_string(&self) -> String {
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let Point {
             id,
             city,
             name,
             coords: (lon, lat),
         } = self;
-        format!("{id}||{city}|{name}|{lon}|{lat}|0||")
+        write!(f, "{id}||{city}|{name}|{lon}|{lat}|0||")
     }
 }
 

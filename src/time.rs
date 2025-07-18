@@ -15,20 +15,6 @@ use std::string::ToString;
 pub struct DvbTime(DateTime<FixedOffset>);
 
 impl DvbTime {
-    fn stringify<T: TimeZone>(dt: &DateTime<T>) -> String {
-        let offset = dt.offset().fix().local_minus_utc();
-
-        let (sign, offset) = if offset < 0 {
-            ('-', -offset)
-        } else {
-            ('+', offset)
-        };
-        let (mins, _sec) = div_mod_floor(offset, 60);
-        let (hour, min) = div_mod_floor(mins, 60);
-
-        format!("/Date({}000{}{:02}{:02})/", dt.timestamp(), sign, hour, min)
-    }
-
     pub fn wait(&self) -> String {
         let now = Local::now();
         let dt: DateTime<FixedOffset> = now.with_timezone(now.offset());
@@ -101,10 +87,26 @@ impl FromStr for DvbTime {
     }
 }
 
-impl ToString for DvbTime {
-    fn to_string(&self) -> String {
-        let DvbTime(dt) = *self;
-        DvbTime::stringify(&dt)
+impl fmt::Display for DvbTime {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let offset = self.offset().fix().local_minus_utc();
+
+        let (sign, offset) = if offset < 0 {
+            ('-', -offset)
+        } else {
+            ('+', offset)
+        };
+        let (mins, _sec) = div_mod_floor(offset, 60);
+        let (hour, min) = div_mod_floor(mins, 60);
+
+        write!(
+            f,
+            "/Date({}000{}{:02}{:02})/",
+            self.timestamp(),
+            sign,
+            hour,
+            min
+        )
     }
 }
 
@@ -156,7 +158,7 @@ mod tests {
     #[test]
     fn create_and_reparse() {
         let now = Local::now();
-        let dvb = DvbTime::stringify(&now);
+        let dvb = DvbTime::from(now).to_string();
         let parsed = dvb.parse::<DvbTime>();
         println!("now: {now}\ndvb: {dvb}\nparsed: {parsed:?}");
 
