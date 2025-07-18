@@ -2,9 +2,7 @@
 
 use serde::{Deserialize, Serialize};
 
-use crate::common::Status;
-use crate::error::Result;
-use crate::time::DvbTime;
+use crate::{common::Status, error::Result, time::DvbTime};
 
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]

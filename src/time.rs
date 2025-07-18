@@ -30,6 +30,10 @@ impl DvbTime {
     pub fn in_n_minutes(mins: i64) -> Self {
         DvbTime::from(Local::now() + chrono::Duration::minutes(mins))
     }
+
+    pub fn to_datetime(&self) -> DateTime<FixedOffset> {
+        self.0
+    }
 }
 
 impl Default for DvbTime {
@@ -55,6 +59,12 @@ impl From<DateTime<Local>> for DvbTime {
 impl From<DateTime<FixedOffset>> for DvbTime {
     fn from(dt: DateTime<FixedOffset>) -> Self {
         DvbTime(dt)
+    }
+}
+
+impl AsRef<DateTime<FixedOffset>> for DvbTime {
+    fn as_ref(&self) -> &DateTime<FixedOffset> {
+        &self.0
     }
 }
 

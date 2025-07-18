@@ -1,14 +1,11 @@
 //! Simple example: Query next arrivals at "HauptBahnhof" using dvb-rs
 
-use dvb::{
-    easy::{find, monitor},
-    Result,
-};
+use dvb::{Result, find_stops, monitor_departures};
 
 fn main() -> Result<()> {
     let query = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
 
-    let found = find(&query)?;
+    let found = find_stops(&query)?;
     let Some(point) = found.points.first() else {
         eprintln!("No stop found for '{query}'");
         return Ok(());
@@ -17,7 +14,7 @@ fn main() -> Result<()> {
     println!("Departures for stop: {} ({})", point.name, point.id);
 
     // Query departures for the found stop
-    let monitor = monitor(&point.id)?;
+    let monitor = monitor_departures(&point.id)?;
     let departures = match &monitor.departures {
         Some(deps) => deps,
         None => {

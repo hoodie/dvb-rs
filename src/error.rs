@@ -9,6 +9,7 @@ pub enum Error {
     DateParse,
     Io(io::Error),
     Reqwest(reqwest::Error),
+    Serde(serde_json::Error),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;
@@ -18,8 +19,9 @@ impl fmt::Display for Error {
         match self {
             Error::ApiError => write!(f, "unexpected response from service"),
             Error::DateParse => write!(f, "can't parse date"),
-            Error::Reqwest(e) => write!(f, "{e}"),
-            Error::Io(e) => write!(f, "{e}"),
+            Error::Reqwest(error) => write!(f, "{error}"),
+            Error::Io(error) => write!(f, "{error}"),
+            Error::Serde(error) => write!(f, "{error}"),
         }
     }
 }
@@ -43,5 +45,11 @@ impl From<reqwest::Error> for Error {
 impl From<io::Error> for Error {
     fn from(e: io::Error) -> Error {
         Error::Io(e)
+    }
+}
+
+impl From<serde_json::Error> for Error {
+    fn from(e: serde_json::Error) -> Error {
+        Error::Serde(e)
     }
 }

@@ -1,15 +1,17 @@
-use serde::de::{self, Deserializer, Visitor};
-use serde::ser::Serializer;
-use serde::{Deserialize, Serialize};
+use serde::{
+    Deserialize, Serialize,
+    de::{self, Deserializer, Visitor},
+    ser::Serializer,
+};
+use serde_json::Value;
 
-use std::error::Error;
-use std::fmt;
-use std::result;
-use std::str::FromStr;
-use std::string::ToString;
+use std::{error::Error, fmt, result, str::FromStr, string::ToString};
 
-use crate::common::Status;
-use crate::error::Result;
+use crate::{
+    common::Status,
+    error::Result,
+    poi::{PoiId, PoiType},
+};
 
 #[derive(Debug)]
 pub struct Point {
@@ -17,6 +19,7 @@ pub struct Point {
     pub city: String,
     pub name: String,
     pub coords: (i64, i64),
+    pub r#type: PoiType,
 }
 
 impl FromStr for Point {
@@ -29,7 +32,9 @@ impl FromStr for Point {
             city: parts[2].into(),
             name: parts[3].into(),
             coords: (parts[4].parse()?, parts[5].parse()?),
+            r#type: PoiId::from_str(parts[0]).unwrap().r#type,
         };
+
         Ok(point)
     }
 }
@@ -41,6 +46,7 @@ impl fmt::Display for Point {
             city,
             name,
             coords: (lon, lat),
+            ..
         } = self;
         write!(f, "{id}||{city}|{name}|{lon}|{lat}|0||")
     }
@@ -86,13 +92,34 @@ impl<'de> Visitor<'de> for PointVisitor {
     }
 }
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Config<'a> {
     pub query: &'a str,
     pub limit: Option<u32>,
-    pub stops_only: Option<bool>,
-    pub assigedstops: Option<bool>,
+    pub stops_only: bool,
+    pub assigedstops: bool,
+    pub dvb: bool,
+    pub format: Format,
+}
+
+impl<'a> Default for Config<'a> {
+    fn default() -> Self {
+        Self {
+            query: Default::default(),
+            limit: Default::default(),
+            stops_only: Default::default(),
+            assigedstops: Default::default(),
+            dvb: true,
+            format: Format::Json,
+        }
+    }
+}
+
+#[derive(Debug, Default, Serialize)]
+pub enum Format {
+    #[default]
+    Json,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -104,21 +131,31 @@ pub struct Found {
     pub expiration_time: String,
 }
 
-pub fn find_point(config: &Config) -> Result<Found> {
+pub fn point_finder(config: &Config) -> Result<Found> {
     const URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
 
-    let result = reqwest::blocking::Client::new()
+    let response: Value = reqwest::blocking::Client::new()
         .post(URL)
         .json(&config)
         .send()?
         .json()?;
 
-    Ok(result)
+    Ok(serde_json::from_value(response)?)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn read_city() {
+        let point = Point::from_str("33000028|||Hauptbahnhof|5657516|4621644|0||").unwrap();
+        assert_eq!(point.city, "");
+
+        let point = Point::from_str("14991850||Wroclaw|Glowny, (Hauptbahnhof)|5674722|4852808|0||")
+            .unwrap();
+        assert_eq!(point.city, "Wroclaw");
+    }
 
     #[test]
     fn from_string() {

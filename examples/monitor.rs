@@ -1,16 +1,19 @@
-use dvb::{DvbTime, Mot, Result, easy::find, monitor, trip};
+use dvb::{
+    DvbTime, Mot, Result, find_stops, monitor,
+    trip::{self, Stop},
+};
 
 fn main() -> Result<()> {
     let query1 = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
     let query2 = std::env::args().nth(2).unwrap_or("WalpurgisStraße".into());
 
-    let start = find(&query1)?;
+    let start = find_stops(&query1)?;
     let Some(start) = start.points.first() else {
         eprintln!("No stop found for '{query1}'");
         return Ok(());
     };
 
-    let destination = find(&query2)?;
+    let destination = find_stops(&query2)?;
     let Some(destination) = destination.points.first() else {
         eprintln!("No stop found for '{query2}'");
         return Ok(());
@@ -23,7 +26,7 @@ fn main() -> Result<()> {
         ..Default::default()
     };
 
-    let departures = monitor::departure_monitor(monitor_config)?;
+    let departures = dbg!(monitor::departure_monitor(monitor_config)?);
 
     if let Some(next_drei) = departures.next_line("3") {
         // println!("Next 3: {next_drei:#?}");
@@ -43,8 +46,8 @@ fn main() -> Result<()> {
             next_drei.real_time, next_drei.direction
         );
         println!("Stops:");
-        for stop in &trip_details.stops.unwrap() {
-            println!("  - {} ({} {:?})", stop.name, stop.id, stop.time);
+        for Stop { id, name, time, .. } in &trip_details.stops.unwrap() {
+            println!("{id} {time} - {name}", time = time.to_rfc3339());
         }
     }
 
