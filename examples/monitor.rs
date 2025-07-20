@@ -3,17 +3,18 @@ use dvb::{
     trip::{self, Stop},
 };
 
-fn main() -> Result<()> {
+#[tokio::main]
+async fn main() -> Result<()> {
     let query1 = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
     let query2 = std::env::args().nth(2).unwrap_or("WalpurgisStraße".into());
 
-    let start = find_stops(&query1)?;
+    let start = find_stops(&query1).await?;
     let Some(start) = start.points.first() else {
         eprintln!("No stop found for '{query1}'");
         return Ok(());
     };
 
-    let destination = find_stops(&query2)?;
+    let destination = find_stops(&query2).await?;
     let Some(destination) = destination.points.first() else {
         eprintln!("No stop found for '{query2}'");
         return Ok(());
@@ -26,7 +27,7 @@ fn main() -> Result<()> {
         ..Default::default()
     };
 
-    let departures = monitor::departure_monitor(monitor_config)?;
+    let departures = monitor::departure_monitor(monitor_config).await?;
 
     if let Some(next_drei) = departures.next_line("3") {
         // println!("Next 3: {next_drei:#?}");
@@ -40,7 +41,7 @@ fn main() -> Result<()> {
             ..Default::default()
         };
 
-        let trip_details = trip::trip_details(&trip_config)?;
+        let trip_details = trip::trip_details(&trip_config).await?;
         println!(
             "Next 3: real_time = {:?}, direction = {}",
             next_drei.real_time, next_drei.direction

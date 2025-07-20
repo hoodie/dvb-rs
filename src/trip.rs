@@ -1,5 +1,3 @@
-//! unfinished
-
 use serde::{Deserialize, Serialize};
 
 use crate::{DvbResponse, error::Result, time::DvbTime};
@@ -49,14 +47,16 @@ pub struct Trip {
     pub stops: Vec<Stop>,
 }
 
-pub fn trip_details(config: &Config) -> Result<DvbResponse<Trip>> {
-    const URL: &str = "https://webapi.vvo-online.de/dm/trip";
+const TRIP_URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
-    let result = reqwest::blocking::Client::new()
-        .post(URL)
+pub async fn trip_details<'a>(config: &Config<'a>) -> Result<DvbResponse<Trip>> {
+    let result = reqwest::Client::new()
+        .post(TRIP_URL)
         .json(&config)
-        .send()?
-        .json()?;
+        .send()
+        .await?
+        .json()
+        .await?;
 
     Ok(result)
 }

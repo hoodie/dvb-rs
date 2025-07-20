@@ -129,14 +129,16 @@ pub struct Found {
     pub points: Vec<Point>,
 }
 
-pub fn point_finder(config: &Config) -> Result<DvbResponse<Found>> {
-    const URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
+const POINT_FINDER_URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
 
-    let response: Value = reqwest::blocking::Client::new()
-        .post(URL)
+pub async fn point_finder<'a>(config: &Config<'a>) -> Result<DvbResponse<Found>> {
+    let response: Value = reqwest::Client::new()
+        .post(POINT_FINDER_URL)
         .json(&config)
-        .send()?
-        .json()?;
+        .send()
+        .await?
+        .json()
+        .await?;
 
     Ok(serde_json::from_value(response)?)
 }

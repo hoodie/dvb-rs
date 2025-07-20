@@ -22,3 +22,6 @@ features = ["json", "blocking"]
 version = "0.4"
 default-features = false
 features = ["clock", "std", "serde"]
+
+[dev-dependencies]
+tokio = { version = "1.46.1", features = ["full"] }

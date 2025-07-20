@@ -3,9 +3,10 @@ use dvb::{
     lines::{Diva, Line},
 };
 
-fn main() -> dvb::Result<()> {
+#[tokio::main]
+async fn main() -> dvb::Result<()> {
     let query1 = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
-    let found = find_stops(&query1)?;
+    let found = find_stops(&query1).await?;
     let start = found.points.first().unwrap();
 
     for Line {
@@ -15,7 +16,7 @@ fn main() -> dvb::Result<()> {
         diva: Diva { network, .. },
         directions,
         ..
-    } in &dvb::lines::lines(&start.id, None)?.lines
+    } in &dvb::lines::lines(&start.id, None).await?.lines
     {
         println!(
             "Line: {network}-{name} {mot:?} {} directions, {} changes",

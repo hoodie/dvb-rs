@@ -50,15 +50,17 @@ impl DepartureMonitor {
 }
 
 // pub fn departure_monitor(config: Config) -> Result<Value> {
-pub fn departure_monitor(config: Config) -> Result<DvbResponse<DepartureMonitor>> {
+pub async fn departure_monitor<'a>(config: Config<'a>) -> Result<DvbResponse<DepartureMonitor>> {
     // pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
     const URL: &str = "https://webapi.vvo-online.de/dm";
 
-    let result = reqwest::blocking::Client::new()
+    let result = reqwest::Client::new()
         .post(URL)
         .json(&config)
-        .send()?
-        .json()?;
+        .send()
+        .await?
+        .json()
+        .await?;
 
     Ok(result)
 }

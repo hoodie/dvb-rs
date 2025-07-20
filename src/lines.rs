@@ -51,13 +51,17 @@ pub struct TimeTable {
     name: String,
 }
 
-pub fn lines(stop_id: &str, timeout: Option<u64>) -> Result<DvbResponse<Lines>> {
-    let response: DvbResponse<Lines> = reqwest::blocking::Client::new()
-        .get("https://webapi.vvo-online.de/stt/lines")
+const LINES_URL: &str = "https://webapi.vvo-online.de/stt/lines";
+
+pub async fn lines(stop_id: &str, timeout: Option<u64>) -> Result<DvbResponse<Lines>> {
+    let response: DvbResponse<Lines> = reqwest::Client::new()
+        .get(LINES_URL)
         .query(&[("format", "json"), ("stopid", stop_id)])
         .timeout(Duration::from_millis(timeout.unwrap_or(15000)))
-        .send()?
-        .json()?;
+        .send()
+        .await?
+        .json()
+        .await?;
 
     Ok(response)
 }

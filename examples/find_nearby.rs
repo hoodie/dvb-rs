@@ -1,7 +1,8 @@
 use dvb::{find_nearby_stops, point::Point};
 
-fn main() {
-    let found = find_nearby_stops("walpurgis").unwrap();
+#[tokio::main]
+async fn main() {
+    let found = find_nearby_stops("walpurgis").await.unwrap();
     println!(
         "Found {} stops ({:?})",
         found.points.len(),
