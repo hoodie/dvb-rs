@@ -45,9 +45,8 @@ pub struct Stop {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Trip {
-    // stops: Option<Vec<serde_json::Value>>,
-    pub stops: Option<Vec<Stop>>,
-    status: Status,
+    #[serde(default)]
+    pub stops: Vec<Stop>,
 }
 
 pub fn trip_details(config: &Config) -> Result<Trip> {

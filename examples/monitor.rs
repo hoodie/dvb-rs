@@ -46,7 +46,7 @@ fn main() -> Result<()> {
             next_drei.real_time, next_drei.direction
         );
         println!("Stops:");
-        for Stop { id, name, time, .. } in &trip_details.stops.unwrap() {
+        for Stop { id, name, time, .. } in &trip_details.stops {
             println!("{id} {time} - {name}", time = time.to_rfc3339());
         }
     }
