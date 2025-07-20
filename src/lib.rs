@@ -10,6 +10,7 @@ mod common;
 pub mod error;
 mod time;
 
+pub mod lines;
 pub mod monitor;
 pub mod poi;
 pub mod point;

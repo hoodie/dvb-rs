@@ -5,11 +5,13 @@ use regex::Regex;
 use serde::de::{self, Deserialize, Deserializer, Visitor};
 use serde::ser::{Serialize, Serializer};
 
-use std::error::Error;
-use std::fmt;
-use std::ops::{Deref, Sub};
-use std::str::FromStr;
-use std::string::ToString;
+use std::{
+    error::Error,
+    fmt,
+    ops::{Deref, Sub},
+    str::FromStr,
+    string::ToString,
+};
 
 #[derive(Debug)]
 pub struct DvbTime(DateTime<FixedOffset>);
