@@ -8,7 +8,7 @@ use serde_json::Value;
 use std::{error::Error, fmt, result, str::FromStr, string::ToString};
 
 use crate::{
-    common::Status,
+    DvbResponse,
     error::Result,
     poi::{PoiId, PoiType},
 };
@@ -126,12 +126,10 @@ pub enum Format {
 #[serde(rename_all = "PascalCase")]
 pub struct Found {
     pub point_status: String,
-    pub status: Status,
     pub points: Vec<Point>,
-    pub expiration_time: String,
 }
 
-pub fn point_finder(config: &Config) -> Result<Found> {
+pub fn point_finder(config: &Config) -> Result<DvbResponse<Found>> {
     const URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
 
     let response: Value = reqwest::blocking::Client::new()

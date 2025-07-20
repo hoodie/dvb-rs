@@ -2,7 +2,7 @@
 
 use serde::{Deserialize, Serialize};
 
-use crate::{common::Status, error::Result, time::DvbTime};
+use crate::{DvbResponse, error::Result, time::DvbTime};
 
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
@@ -49,7 +49,7 @@ pub struct Trip {
     pub stops: Vec<Stop>,
 }
 
-pub fn trip_details(config: &Config) -> Result<Trip> {
+pub fn trip_details(config: &Config) -> Result<DvbResponse<Trip>> {
     const URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
     let result = reqwest::blocking::Client::new()

@@ -16,18 +16,27 @@ pub mod poi;
 pub mod point;
 pub mod trip;
 
-pub use crate::{common::Mot, error::Result, time::DvbTime};
+pub use crate::{
+    common::{DvbResponse, Mot},
+    error::Result,
+    time::DvbTime,
+};
 
-pub fn find_stops(query: &str) -> Result<point::Found> {
-    point::point_finder(&point::Config {
+use crate::{
+    monitor::DepartureMonitor,
+    point::{Config, Found, point_finder},
+};
+
+pub fn find_stops(query: &str) -> Result<DvbResponse<Found>> {
+    point_finder(&Config {
         query,
         stops_only: true,
         ..Default::default()
     })
 }
 
-pub fn find_nearby_stops(query: &str) -> Result<point::Found> {
-    point::point_finder(&point::Config {
+pub fn find_nearby_stops(query: &str) -> Result<DvbResponse<Found>> {
+    point_finder(&Config {
         query,
         stops_only: false,
         assigedstops: true,
@@ -35,15 +44,15 @@ pub fn find_nearby_stops(query: &str) -> Result<point::Found> {
     })
 }
 
-pub fn find_pois(query: &str) -> Result<point::Found> {
-    point::point_finder(&point::Config {
+pub fn find_pois(query: &str) -> Result<DvbResponse<Found>> {
+    point_finder(&Config {
         query,
         stops_only: false,
         ..Default::default()
     })
 }
 
-pub fn monitor_departures(stopid: &str) -> Result<monitor::DepartureMonitor> {
+pub fn monitor_departures(stopid: &str) -> Result<DvbResponse<DepartureMonitor>> {
     let monitor = monitor::departure_monitor(monitor::Config {
         stopid,
         mot: None,

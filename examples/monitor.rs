@@ -26,7 +26,7 @@ fn main() -> Result<()> {
         ..Default::default()
     };
 
-    let departures = dbg!(monitor::departure_monitor(monitor_config)?);
+    let departures = monitor::departure_monitor(monitor_config)?;
 
     if let Some(next_drei) = departures.next_line("3") {
         // println!("Next 3: {next_drei:#?}");

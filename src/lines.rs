@@ -2,7 +2,7 @@ use std::{fmt::Debug, time::Duration};
 
 use serde::{Deserialize, Serialize};
 
-use crate::{Mot, common::Status, error::Result};
+use crate::{DvbResponse, Mot, error::Result};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
@@ -15,18 +15,8 @@ pub struct Mode {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Diva {
-    network: String,
-    number: Option<String>,
-}
-
-#[derive(Deserialize, Debug)]
-#[serde(rename_all = "PascalCase")]
-pub struct DvbResponse<T: Debug> {
-    pub status: Status,
-    pub expiration_time: Option<String>,
-
-    #[serde(flatten)]
-    pub content: T,
+    pub network: String,
+    pub number: Option<String>,
 }
 
 #[derive(Deserialize, Debug)]
