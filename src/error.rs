@@ -18,8 +18,8 @@ impl fmt::Display for Error {
         match self {
             Error::ApiError => write!(f, "unexpected response from service"),
             Error::DateParse => write!(f, "can't parse date"),
-            Error::Reqwest(ref e) => write!(f, "{}", e),
-            Error::Io(ref e) => write!(f, "{}", e),
+            Error::Reqwest(ref e) => write!(f, "{e}"),
+            Error::Io(ref e) => write!(f, "{e}"),
         }
     }
 }

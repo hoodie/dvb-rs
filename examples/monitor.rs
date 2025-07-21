@@ -24,8 +24,8 @@ fn main() -> Result<()> {
         };
 
         let details = trip::trip_details(&trip_config);
-        println!("{:#?}", details);
-        println!("{:#?}", next_drei);
+        println!("{details:#?}");
+        println!("{next_drei:#?}");
     }
 
     Ok(())

@@ -34,7 +34,7 @@ impl DvbTime {
         let dt: DateTime<FixedOffset> = now.with_timezone(now.offset());
         let min = self.0.sub(dt).num_minutes();
 
-        format!("{}min", min)
+        format!("{min}min")
     }
 
     pub fn now() -> Self {
@@ -158,7 +158,7 @@ mod tests {
         let now = Local::now();
         let dvb = DvbTime::stringify(&now);
         let parsed = dvb.parse::<DvbTime>();
-        println!("now: {}\ndvb: {}\nparsed: {:?}", now, dvb, parsed);
+        println!("now: {now}\ndvb: {dvb}\nparsed: {parsed:?}");
 
         let (parsed_timestamp, parsed_offset) = parsed
             .map(|dt| (DateTime::timestamp(&dt.0), dt.0.offset().local_minus_utc()))
@@ -174,6 +174,6 @@ mod tests {
     fn negative_offset() {
         let dvb = "/Date(155581260000-0000)/";
         let parsed = DvbTime::from_str(dvb);
-        println!("{:?}", parsed);
+        println!("{parsed:?}");
     }
 }

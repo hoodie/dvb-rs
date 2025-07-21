@@ -42,7 +42,7 @@ impl ToString for Point {
             name,
             coords: (lon, lat),
         } = self;
-        format!("{}||{}|{}|{}|{}|0||", id, city, name, lon, lat)
+        format!("{id}||{city}|{name}|{lon}|{lat}|0||")
     }
 }
 
