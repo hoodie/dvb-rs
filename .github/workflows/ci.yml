@@ -1,0 +1,69 @@
+on: [push, pull_request]
+
+name: Continuous Integration
+
+jobs:
+  check:
+    name: cargo-check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+          - stable
+          - beta
+          - stable minus 5 releases
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ matrix.rust }}
+      - name: check default-features
+        run: cargo check
+
+      - name: check all-features
+        run: cargo check --all-features
+
+
+  test:
+    name: cargo-test ...
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: test
+        run: cargo test
+
+  fmtclippy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+
+      - name: cargo-clippy
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      - name: cargo-fmt
+        run: cargo fmt --all --check
+
+  deny-check:
+    name: cargo-deny check
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.checks == 'advisories' }}
+    strategy:
+      matrix:
+        checks:
+          - advisories
+          - bans licenses sources
+    steps:
+      - uses: actions/checkout@v4
+      - uses: EmbarkStudios/cargo-deny-action@v1
+        with:
+          command: check ${{ matrix.checks }}
+          arguments: --all-features
