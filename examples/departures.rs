@@ -24,13 +24,19 @@ async fn main() -> Result<()> {
         }
     };
 
+    let dir_len = departures
+        .iter()
+        .map(|dep| dep.direction.len())
+        .max()
+        .unwrap_or(0);
+
     for dep in departures {
         if let Some(arrival) = &dep.real_time {
             println!(
-                "{:>5} to {:20} in {}",
+                "{:>5} to {:dir_len$} in {:>6}",
                 dep.line_name,
                 dep.direction,
-                arrival.wait()
+                arrival.wait(),
             );
         }
     }

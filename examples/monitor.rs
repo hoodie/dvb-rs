@@ -20,20 +20,20 @@ async fn main() -> Result<()> {
         return Ok(());
     };
 
-    let monitor_config = monitor::Config {
+    let monitor_params = monitor::Params {
         stopid: &start.id,
         mot: Some(&[Mot::Tram]),
         limit: None,
         ..Default::default()
     };
 
-    let departures = monitor::departure_monitor(monitor_config).await?;
+    let departures = monitor::departure_monitor(monitor_params).await?;
 
     if let Some(next_drei) = departures.next_line("3") {
         // println!("Next 3: {next_drei:#?}");
         let time = DvbTime::in_n_minutes(180);
 
-        let trip_config = trip::Config {
+        let trip_params = trip::Params {
             tripid: &next_drei.id,
             // stopid: "33000028",
             stopid: &destination.id,
@@ -41,7 +41,7 @@ async fn main() -> Result<()> {
             ..Default::default()
         };
 
-        let trip_details = trip::trip_details(&trip_config).await?;
+        let trip_details = trip::trip_details(&trip_params).await?;
         println!(
             "Next 3: real_time = {:?}, direction = {}",
             next_drei.real_time, next_drei.direction

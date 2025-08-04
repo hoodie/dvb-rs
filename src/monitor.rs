@@ -8,7 +8,7 @@ use crate::{
 };
 
 #[derive(Serialize, Debug, Default)]
-pub struct Config<'a> {
+pub struct Params<'a> {
     pub stopid: &'a str,
     pub limit: Option<u32>,
     pub time: Option<&'a str>,
@@ -49,14 +49,12 @@ impl DepartureMonitor {
     }
 }
 
-// pub fn departure_monitor(config: Config) -> Result<Value> {
-pub async fn departure_monitor<'a>(config: Config<'a>) -> Result<DvbResponse<DepartureMonitor>> {
-    // pub fn departure_monitor(config: Config) -> Result<serde_json::Value> {
-    const URL: &str = "https://webapi.vvo-online.de/dm";
+const MONITOR_URL: &str = "https://webapi.vvo-online.de/dm";
 
+pub async fn departure_monitor<'a>(params: Params<'a>) -> Result<DvbResponse<DepartureMonitor>> {
     let result = reqwest::Client::new()
-        .post(URL)
-        .json(&config)
+        .post(MONITOR_URL)
+        .json(&params)
         .send()
         .await?
         .json()

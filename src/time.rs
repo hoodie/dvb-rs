@@ -13,8 +13,13 @@ use std::{
     string::ToString,
 };
 
-#[derive(Debug)]
 pub struct DvbTime(DateTime<FixedOffset>);
+
+impl fmt::Debug for DvbTime {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, " (/Date){}", &self.0)
+    }
+}
 
 impl DvbTime {
     pub fn wait(&self) -> String {
@@ -123,19 +128,13 @@ impl fmt::Display for DvbTime {
 }
 
 impl Serialize for DvbTime {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         serializer.serialize_str(&self.to_string())
     }
 }
 
 impl<'de> Deserialize<'de> for DvbTime {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         deserializer.deserialize_str(DvbTimeVisitor)
     }
 }

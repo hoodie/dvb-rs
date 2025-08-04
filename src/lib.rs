@@ -56,7 +56,7 @@ pub async fn find_pois(query: &str) -> Result<DvbResponse<Found>> {
 }
 
 pub async fn monitor_departures(stopid: &str) -> Result<DvbResponse<DepartureMonitor>> {
-    let monitor = monitor::departure_monitor(monitor::Config {
+    let monitor = monitor::departure_monitor(monitor::Params {
         stopid,
         mot: None,
         limit: Some(15),

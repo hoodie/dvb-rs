@@ -4,7 +4,7 @@ use crate::{DvbResponse, error::Result, time::DvbTime};
 
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
-pub struct Config<'a> {
+pub struct Params<'a> {
     pub tripid: &'a str,
     pub time: DvbTime,
     pub stopid: &'a str,
@@ -49,10 +49,10 @@ pub struct Trip {
 
 const TRIP_URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
-pub async fn trip_details<'a>(config: &Config<'a>) -> Result<DvbResponse<Trip>> {
+pub async fn trip_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Trip>> {
     let result = reqwest::Client::new()
         .post(TRIP_URL)
-        .json(&config)
+        .json(&params)
         .send()
         .await?
         .json()
