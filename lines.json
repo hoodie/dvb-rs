@@ -1,0 +1,1216 @@
+{
+  "ExpirationTime": "/Date(1753008488015+0200)/",
+  "Lines": [
+    {
+      "Changes": [
+        "23438",
+        "23520"
+      ],
+      "Directions": [
+        {
+          "Name": "Pennrich Gleisschleife",
+          "TimeTables": [
+            {
+              "Id": "voe:11002: :H:j25:42",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "DD Kleinzschachwitz Freystraße",
+          "TimeTables": [
+            {
+              "Id": "voe:11002: :R:j25:42",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11002: :R:j25:45",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Betriebshof Gorbitz",
+          "TimeTables": [
+            {
+              "Id": "voe:11002: :H:j25:45",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11002"
+      },
+      "Mot": "Tram",
+      "Name": "2"
+    },
+    {
+      "Changes": [
+        "23438",
+        "23520"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Wilder Mann",
+          "TimeTables": [
+            {
+              "Id": "voe:11003: :H:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11003: :H:j25:34",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11003: :H:j25:40",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11003: :H:j25:45",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11003: :H:j25:46",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Coschütz",
+          "TimeTables": [
+            {
+              "Id": "voe:11003: :R:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11003: :R:j25:34",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11003: :R:j25:40",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11003: :R:j25:46",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Webergasse",
+          "TimeTables": [
+            {
+              "Id": "voe:11003: :H:j25:42",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Postplatz",
+          "TimeTables": [
+            {
+              "Id": "voe:11003: :R:j25:42",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11003: :R:j25:45",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11003"
+      },
+      "Mot": "Tram",
+      "Name": "3"
+    },
+    {
+      "Changes": [
+        "23659",
+        "23615",
+        "23438",
+        "23520",
+        "20535"
+      ],
+      "Directions": [
+        {
+          "Name": "Weinböhla (Rathausstraße)",
+          "TimeTables": [
+            {
+              "Id": "voe:11004: :H:j25:42",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Tolkewitz Schulcampus",
+          "TimeTables": [
+            {
+              "Id": "voe:11004: :R:j25:42",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Radebeul West (Flemmingstraße)",
+          "TimeTables": [
+            {
+              "Id": "voe:11004: :H:j25:45",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Mickten",
+          "TimeTables": [
+            {
+              "Id": "voe:11004: :R:j25:45",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11004"
+      },
+      "Mot": "Tram",
+      "Name": "4"
+    },
+    {
+      "Changes": [
+        "23438",
+        "23520"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Betriebshof Gorbitz",
+          "TimeTables": [
+            {
+              "Id": "voe:11007: :H:j25:13",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11007: :H:j25:43",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11007: :H:j25:48",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11007: :H:j25:49",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Weixdorf Rathenaustraße, Gleisschleife",
+          "TimeTables": [
+            {
+              "Id": "voe:11007: :R:j25:13",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11007: :R:j25:43",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11007: :R:j25:48",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11007: :R:j25:49",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11007"
+      },
+      "Mot": "Tram",
+      "Name": "7"
+    },
+    {
+      "Changes": [
+        "23520"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Südvorstadt",
+          "TimeTables": [
+            {
+              "Id": "voe:11008: :H:j25:5",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11008: :H:j25:26",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11008: :H:j25:56",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11008: :H:j25:58",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11008: :H:j25:61",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11008: :H:j25:62",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Hellerau Kiefernweg",
+          "TimeTables": [
+            {
+              "Id": "voe:11008: :R:j25:5",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11008: :R:j25:26",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11008: :R:j25:56",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11008: :R:j25:58",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11008: :R:j25:61",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11008: :R:j25:62",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11008"
+      },
+      "Mot": "Tram",
+      "Name": "8"
+    },
+    {
+      "Changes": [
+        "23520"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Messe Gleisschleife",
+          "TimeTables": [
+            {
+              "Id": "voe:11010: :H:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11010: :H:j25:8",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11010: :H:j25:15",
+              "Name": "Aktualisierter Grundfahrplan - gültig seit 21. März 2025"
+            },
+            {
+              "Id": "voe:11010: :H:j25:56",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11010: :H:j25:58",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11010: :H:j25:61",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11010: :H:j25:62",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Striesen Ludwig-Hartmann-Straße",
+          "TimeTables": [
+            {
+              "Id": "voe:11010: :R:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11010: :R:j25:8",
+              "Name": "Standardfahrplan 2025 - gültig ab 2. Juni 2025"
+            },
+            {
+              "Id": "voe:11010: :R:j25:15",
+              "Name": "Aktualisierter Grundfahrplan - gültig seit 21. März 2025"
+            },
+            {
+              "Id": "voe:11010: :R:j25:56",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11010: :R:j25:58",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11010: :R:j25:61",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11010: :R:j25:62",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11010"
+      },
+      "Mot": "Tram",
+      "Name": "10"
+    },
+    {
+      "Changes": [
+        "23438",
+        "23520"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Zschertnitz Münzmeisterstraße",
+          "TimeTables": [
+            {
+              "Id": "voe:11011: :H:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:11011: :H:j25:41",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11011: :H:j25:47",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Eisenbahnstraße",
+          "TimeTables": [
+            {
+              "Id": "voe:11011: :R:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Bühlau Ullersdorfer Platz",
+          "TimeTables": [
+            {
+              "Id": "voe:11011: :R:j25:41",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:11011: :R:j25:46",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:11011: :R:j25:47",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Postplatz",
+          "TimeTables": [
+            {
+              "Id": "voe:11011: :H:j25:43",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11011: :H:j25:46",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Webergasse",
+          "TimeTables": [
+            {
+              "Id": "voe:11011: :R:j25:43",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11011"
+      },
+      "Mot": "Tram",
+      "Name": "11"
+    },
+    {
+      "Changes": [
+        "23438",
+        "23520",
+        "22867"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Wölfnitz",
+          "TimeTables": [
+            {
+              "Id": "voe:11012: :H:j25:55",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11012: :H:j25:58",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Striesen Ludwig-Hartmann-Straße",
+          "TimeTables": [
+            {
+              "Id": "voe:11012: :R:j25:55",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:11012: :R:j25:58",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11012"
+      },
+      "Mot": "Tram",
+      "Name": "12"
+    },
+    {
+      "Changes": [
+        "23438",
+        "20535"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Deutsches Hygiene-Museum",
+          "TimeTables": [
+            {
+              "Id": "voe:11044: :H:j25:44",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "DD Laubegast Kronstädter Platz",
+          "TimeTables": [
+            {
+              "Id": "voe:11044: :R:j25:44",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "11044"
+      },
+      "Mot": "Tram",
+      "Name": "44"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Sebnitz Brückenschänke",
+          "TimeTables": [
+            {
+              "Id": "voe:15261:m:R:j25:4",
+              "Name": "Sonderfahrplan \"Sperrung Carolabrücke\" - Gültig ab 30. Juni 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "15261m"
+      },
+      "Mot": "PlusBus",
+      "Name": "261"
+    },
+    {
+      "Changes": [
+        "23511",
+        "23522",
+        "22979"
+      ],
+      "Directions": [
+        {
+          "Name": "Hetzdorf, Klinik",
+          "TimeTables": [
+            {
+              "Id": "voe:23333: :H:j25:3",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            },
+            {
+              "Id": "voe:23333: :H:j25:6",
+              "Name": "Angepasster Fahrplan (Bau DD Postplatz) - gültig 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Pirnaischer Platz",
+          "TimeTables": [
+            {
+              "Id": "voe:23333: :R:j25:3",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            },
+            {
+              "Id": "voe:23333: :R:j25:6",
+              "Name": "Angepasster Fahrplan (Bau DD Postplatz) - gültig 30.06. - 20.07.2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "23333"
+      },
+      "Mot": "PlusBus",
+      "Name": "333"
+    },
+    {
+      "Changes": [
+        "23612",
+        "23586",
+        "23522"
+      ],
+      "Directions": [
+        {
+          "Name": "Bannewitz Windbergstraße",
+          "TimeTables": [
+            {
+              "Id": "voe:23360: :H:j25:1",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            },
+            {
+              "Id": "voe:23360: :H:j25:2",
+              "Name": "Angepasster Fahrplan (Bau DD Postplatz) - gültig 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Ammonstraße / Budapester Straße",
+          "TimeTables": [
+            {
+              "Id": "voe:23360: :R:j25:1",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            },
+            {
+              "Id": "voe:23360: :R:j25:2",
+              "Name": "Angepasster Fahrplan (Bau DD Postplatz) - gültig 30.06. - 20.07.2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "23360"
+      },
+      "Mot": "PlusBus",
+      "Name": "360"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Zella Waldheimer Straße",
+          "TimeTables": [
+            {
+              "Id": "voe:24424: :R:j25:3",
+              "Name": "Aktualisierter Standardfahrplan - gültig ab 8. Juni 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "24424"
+      },
+      "Mot": "PlusBus",
+      "Name": "424"
+    },
+    {
+      "Changes": [
+        "23626",
+        "23687",
+        "23438",
+        "23520",
+        "23448"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Johannstadt",
+          "TimeTables": [
+            {
+              "Id": "voe:21062: :R:j25:69",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "21062"
+      },
+      "Mot": "CityBus",
+      "Name": "62"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Dresden Mockritz",
+          "TimeTables": [
+            {
+              "Id": "voe:21066: :H:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:21066: :H:j25:86",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:21066: :H:j25:88",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:21066: :H:j25:91",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Lockwitz",
+          "TimeTables": [
+            {
+              "Id": "voe:21066: :R:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:21066: :R:j25:86",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:21066: :R:j25:88",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            },
+            {
+              "Id": "voe:21066: :R:j25:92",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            },
+            {
+              "Id": "voe:21066: :R:j25:3",
+              "Name": "Standardfahrplan DVB - gültig ab 6. Januar 2025"
+            },
+            {
+              "Id": "voe:21066: :R:j25:86",
+              "Name": "Grundfahrplan Sommerferien - gültig vom 30. Juni bis 10. August 2025"
+            },
+            {
+              "Id": "voe:21066: :R:j25:88",
+              "Name": "Fahrplan-Grunddaten 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Nickern Alter Postweg",
+          "TimeTables": [
+            {
+              "Id": "voe:21066: :R:j25:91",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            },
+            {
+              "Id": "voe:21066: :R:j25:91",
+              "Name": "Fahrplandatenaktualisierung - gültig vom 18. bis 24. Juli 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Coschütz",
+          "TimeTables": [
+            {
+              "Id": "voe:21066: :H:j25:92",
+              "Name": "Fahrplan-Grunddaten 2. Ferienhälfte (gültig vom 21.07. bis 10.08.2025)"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "21066"
+      },
+      "Mot": "CityBus",
+      "Name": "66"
+    },
+    {
+      "Changes": [
+        "23522",
+        "22390",
+        "21066"
+      ],
+      "Directions": [
+        {
+          "Name": "Dresden Postplatz",
+          "TimeTables": [
+            {
+              "Id": "voe:12928:n:H:j25:3",
+              "Name": "Angepasster Fahrplan (Bau DD Postplatz) - gültig 30.06. - 20.07.2025"
+            }
+          ]
+        },
+        {
+          "Name": "Pirna Sonnenstein Süd",
+          "TimeTables": [
+            {
+              "Id": "voe:12928:n:R:j25:3",
+              "Name": "Angepasster Fahrplan (Bau DD Postplatz) - gültig 30.06. - 20.07.2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "12928n"
+      },
+      "Mot": "CityBus",
+      "Name": "H/S (Pirna)"
+    },
+    {
+      "Changes": [
+        "23688",
+        "23689"
+      ],
+      "Directions": [
+        {
+          "Name": "Bannewitz Wendeplatz",
+          "TimeTables": [
+            {
+              "Id": "voe:23352: :H:j25:1",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Ammonstraße / Budapester Straße",
+          "TimeTables": [
+            {
+              "Id": "voe:23352: :R:j25:1",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "23352"
+      },
+      "Mot": "IntercityBus",
+      "Name": "352"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Possendorf Kastanienallee",
+          "TimeTables": [
+            {
+              "Id": "voe:23366: :H:j25:1",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            }
+          ]
+        },
+        {
+          "Name": "Dresden Ammonstraße / Budapester Straße",
+          "TimeTables": [
+            {
+              "Id": "voe:23366: :R:j25:1",
+              "Name": "Standardfahrplan 2025 - gültig ab 15. Dez. 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "23366"
+      },
+      "Mot": "IntercityBus",
+      "Name": "366"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Annaberg-Buchholz, Busbahnhof",
+          "TimeTables": [
+            {
+              "Id": "vms:40400:M:R:j24:1",
+              "Name": "Fahrplan 2024/25"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "vms",
+        "Number": "40400M"
+      },
+      "Mot": "IntercityBus",
+      "Name": "400"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Chemnitz, Hauptbahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:04030: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "04030"
+      },
+      "Mot": "Train",
+      "Name": "RB 30"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Königsbrück",
+          "TimeTables": [
+            {
+              "Id": "voe:01033: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "01033"
+      },
+      "Mot": "Train",
+      "Name": "RB 33"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Görlitz Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:02060: :H:j25:2",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 1. April 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "02060"
+      },
+      "Mot": "Train",
+      "Name": "RB 60"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Zittau Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:02061: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "02061"
+      },
+      "Mot": "Train",
+      "Name": "RB 61"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Zgorzelec #voe",
+          "TimeTables": [
+            {
+              "Id": "voe:09001:m:H:j25:2",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 1. April 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "09001m"
+      },
+      "Mot": "Train",
+      "Name": "RE 1"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Zgorzelec #voe",
+          "TimeTables": [
+            {
+              "Id": "voe:02001: :H:j25:2",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 1. April 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "02001"
+      },
+      "Mot": "Train",
+      "Name": "RE 1"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Zittau Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:02002: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "02002"
+      },
+      "Mot": "Train",
+      "Name": "RE 2"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Zittau Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:09002:m:H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "09002m"
+      },
+      "Mot": "Train",
+      "Name": "RE 2"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Hof (Saale) Hbf #voe",
+          "TimeTables": [
+            {
+              "Id": "voe:04003: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "04003"
+      },
+      "Mot": "Train",
+      "Name": "RE 3"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Kurort Altenberg Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:01019: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "01019"
+      },
+      "Mot": "Train",
+      "Name": "RE 19"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Litomerice mesto",
+          "TimeTables": [
+            {
+              "Id": "voe:09020: :R:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "09020"
+      },
+      "Mot": "Train",
+      "Name": "RE 20"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Leipzig Hbf",
+          "TimeTables": [
+            {
+              "Id": "voe:09050: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 10. August 2025"
+            },
+            {
+              "Id": "voe:09050: :H:j25:2",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024 bis 9. August 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "09050"
+      },
+      "Mot": "Train",
+      "Name": "RE 50"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Meißen Triebischtal",
+          "TimeTables": [
+            {
+              "Id": "voe:10001: :H:j25:2",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 30. Juni 2025"
+            }
+          ]
+        },
+        {
+          "Name": "Bad Schandau",
+          "TimeTables": [
+            {
+              "Id": "voe:10001: :R:j25:2",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 30. Juni 2025"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "10001"
+      },
+      "Mot": "SuburbanRailway",
+      "Name": "S 1"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Dresden Flughafen",
+          "TimeTables": [
+            {
+              "Id": "voe:10002: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        },
+        {
+          "Name": "Pirna Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:10002: :R:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "10002"
+      },
+      "Mot": "SuburbanRailway",
+      "Name": "S 2"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Freiberg, Bahnhof",
+          "TimeTables": [
+            {
+              "Id": "voe:10003:m:H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "10003m"
+      },
+      "Mot": "SuburbanRailway",
+      "Name": "S 3"
+    },
+    {
+      "Directions": [
+        {
+          "Name": "Kamenz (Sachs)",
+          "TimeTables": [
+            {
+              "Id": "voe:01008: :H:j25:1",
+              "Name": "Jahresfahrplan 2025 - Gültig ab 15. Dezember 2024"
+            }
+          ]
+        }
+      ],
+      "Diva": {
+        "Network": "voe",
+        "Number": "01008"
+      },
+      "Mot": "SuburbanRailway",
+      "Name": "S 8"
+    }
+  ],
+  "Status": {
+    "Code": "Ok"
+  }
+}

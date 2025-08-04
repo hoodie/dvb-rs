@@ -1,3 +1,5 @@
+use std::{fmt::Debug, ops::Deref};
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -16,6 +18,7 @@ pub enum Mot {
     Cableway,
     Ferry,
     HailedSharedTaxi,
+    PlusBus,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -30,4 +33,29 @@ pub enum StatusCode {
 pub struct Status {
     code: StatusCode,
     message: Option<String>,
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "PascalCase")]
+pub struct DvbResponse<T: Debug> {
+    pub status: Status,
+    // TODO: parse this
+    pub expiration_time: Option<String>,
+
+    #[serde(flatten)]
+    content: T,
+}
+
+impl<T: Debug> AsRef<T> for DvbResponse<T> {
+    fn as_ref(&self) -> &T {
+        &self.content
+    }
+}
+
+impl<T: Debug> Deref for DvbResponse<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.content
+    }
 }

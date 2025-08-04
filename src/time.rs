@@ -5,30 +5,23 @@ use regex::Regex;
 use serde::de::{self, Deserialize, Deserializer, Visitor};
 use serde::ser::{Serialize, Serializer};
 
-use std::error::Error;
-use std::fmt;
-use std::ops::{Deref, Sub};
-use std::str::FromStr;
-use std::string::ToString;
+use std::{
+    error::Error,
+    fmt,
+    ops::{Deref, Sub},
+    str::FromStr,
+    string::ToString,
+};
 
-#[derive(Debug)]
 pub struct DvbTime(DateTime<FixedOffset>);
 
-impl DvbTime {
-    fn stringify<T: TimeZone>(dt: &DateTime<T>) -> String {
-        let offset = dt.offset().fix().local_minus_utc();
-
-        let (sign, offset) = if offset < 0 {
-            ('-', -offset)
-        } else {
-            ('+', offset)
-        };
-        let (mins, _sec) = div_mod_floor(offset, 60);
-        let (hour, min) = div_mod_floor(mins, 60);
-
-        format!("/Date({}000{}{:02}{:02})/", dt.timestamp(), sign, hour, min)
+impl fmt::Debug for DvbTime {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, " (/Date){}", &self.0)
     }
+}
 
+impl DvbTime {
     pub fn wait(&self) -> String {
         let now = Local::now();
         let dt: DateTime<FixedOffset> = now.with_timezone(now.offset());
@@ -43,6 +36,10 @@ impl DvbTime {
 
     pub fn in_n_minutes(mins: i64) -> Self {
         DvbTime::from(Local::now() + chrono::Duration::minutes(mins))
+    }
+
+    pub fn to_datetime(&self) -> DateTime<FixedOffset> {
+        self.0
     }
 }
 
@@ -69,6 +66,12 @@ impl From<DateTime<Local>> for DvbTime {
 impl From<DateTime<FixedOffset>> for DvbTime {
     fn from(dt: DateTime<FixedOffset>) -> Self {
         DvbTime(dt)
+    }
+}
+
+impl AsRef<DateTime<FixedOffset>> for DvbTime {
+    fn as_ref(&self) -> &DateTime<FixedOffset> {
+        &self.0
     }
 }
 
@@ -101,27 +104,37 @@ impl FromStr for DvbTime {
     }
 }
 
-impl ToString for DvbTime {
-    fn to_string(&self) -> String {
-        let DvbTime(dt) = *self;
-        DvbTime::stringify(&dt)
+impl fmt::Display for DvbTime {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let offset = self.offset().fix().local_minus_utc();
+
+        let (sign, offset) = if offset < 0 {
+            ('-', -offset)
+        } else {
+            ('+', offset)
+        };
+        let (mins, _sec) = div_mod_floor(offset, 60);
+        let (hour, min) = div_mod_floor(mins, 60);
+
+        write!(
+            f,
+            "/Date({}000{}{:02}{:02})/",
+            self.timestamp(),
+            sign,
+            hour,
+            min
+        )
     }
 }
 
 impl Serialize for DvbTime {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         serializer.serialize_str(&self.to_string())
     }
 }
 
 impl<'de> Deserialize<'de> for DvbTime {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         deserializer.deserialize_str(DvbTimeVisitor)
     }
 }
@@ -156,7 +169,7 @@ mod tests {
     #[test]
     fn create_and_reparse() {
         let now = Local::now();
-        let dvb = DvbTime::stringify(&now);
+        let dvb = DvbTime::from(now).to_string();
         let parsed = dvb.parse::<DvbTime>();
         println!("now: {now}\ndvb: {dvb}\nparsed: {parsed:?}");
 
