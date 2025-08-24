@@ -9,8 +9,10 @@ pub enum ArrivalState {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+#[non_exhaustive]
 pub enum Mot {
     Tram,
+    Bus,
     CityBus,
     IntercityBus,
     SuburbanRailway,
@@ -19,6 +21,8 @@ pub enum Mot {
     Ferry,
     HailedSharedTaxi,
     PlusBus,
+    Footpath,
+    RapidTransit,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -57,5 +61,11 @@ impl<T: Debug> Deref for DvbResponse<T> {
 
     fn deref(&self) -> &Self::Target {
         &self.content
+    }
+}
+
+impl<T: Debug> DvbResponse<T> {
+    pub fn into_inner(self) -> T {
+        self.content
     }
 }

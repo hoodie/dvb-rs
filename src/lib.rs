@@ -15,6 +15,7 @@ pub mod monitor;
 pub mod poi;
 pub mod point;
 pub mod trip;
+pub mod route;
 
 pub use crate::{
     common::{DvbResponse, Mot},
