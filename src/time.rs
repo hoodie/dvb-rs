@@ -41,6 +41,14 @@ impl DvbTime {
     pub fn to_datetime(&self) -> DateTime<FixedOffset> {
         self.0
     }
+
+    pub fn to_rfc3339(&self) -> String {
+        self.0.to_rfc3339()
+    }
+
+    pub fn to_time(&self) -> String {
+        self.0.time().to_string()
+    }
 }
 
 impl Default for DvbTime {
