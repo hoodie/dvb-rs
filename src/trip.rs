@@ -1,3 +1,4 @@
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 use crate::{DvbResponse, error::Result, time::DvbTime};
@@ -11,14 +12,14 @@ pub struct Params<'a> {
     pub mapdata: Option<bool>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Platform {
     name: String,
     r#type: String, // enum PlatformType {Platform}
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub enum Position {
     Previous,
@@ -26,7 +27,7 @@ pub enum Position {
     Next,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Stop {
     pub id: String,
@@ -40,7 +41,7 @@ pub struct Stop {
     pub time: DvbTime,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Trip {
     #[serde(default)]
@@ -50,7 +51,7 @@ pub struct Trip {
 const TRIP_URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
 pub async fn trip_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Trip>> {
-    let result = reqwest::Client::new()
+    let response = reqwest::Client::new()
         .post(TRIP_URL)
         .json(&params)
         .send()
@@ -58,5 +59,5 @@ pub async fn trip_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Trip>> 
         .json()
         .await?;
 
-    Ok(result)
+    Ok(response)
 }

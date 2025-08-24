@@ -1,3 +1,4 @@
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -17,7 +18,7 @@ pub struct Params<'a> {
     pub mot: Option<&'a [Mot]>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Departure {
     pub id: String,
@@ -31,7 +32,7 @@ pub struct Departure {
     // diva
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct DepartureMonitor {
     pub name: Option<String>,

@@ -2,6 +2,7 @@ use chrono::prelude::*;
 use num_integer::div_mod_floor;
 use regex::Regex;
 
+use schemars::JsonSchema;
 use serde::de::{self, Deserialize, Deserializer, Visitor};
 use serde::ser::{Serialize, Serializer};
 
@@ -13,6 +14,7 @@ use std::{
     string::ToString,
 };
 
+#[derive(JsonSchema)]
 pub struct DvbTime(DateTime<FixedOffset>);
 
 impl fmt::Debug for DvbTime {
