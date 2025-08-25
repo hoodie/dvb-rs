@@ -1,11 +1,11 @@
+use schemars::JsonSchema;
 use serde::{
     Deserialize, Serialize,
     de::{self, Deserializer, Visitor},
-    ser::Serializer,
 };
 use serde_json::Value;
 
-use std::{error::Error, fmt, result, str::FromStr, string::ToString};
+use std::{error::Error, fmt, result, str::FromStr};
 
 use crate::{
     DvbResponse,
@@ -13,7 +13,7 @@ use crate::{
     poi::{PoiId, PoiType},
 };
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, JsonSchema)]
 pub struct Point {
     pub id: String,
     pub city: String,
@@ -49,15 +49,6 @@ impl fmt::Display for Point {
             ..
         } = self;
         write!(f, "{id}||{city}|{name}|{lon}|{lat}|0||")
-    }
-}
-
-impl Serialize for Point {
-    fn serialize<S>(&self, serializer: S) -> result::Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
-        serializer.serialize_str(&self.to_string())
     }
 }
 

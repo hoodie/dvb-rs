@@ -1,16 +1,19 @@
 use std::{fmt::Debug, ops::Deref};
 
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 pub enum ArrivalState {
     Delayed,
     InTime,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[non_exhaustive]
 pub enum Mot {
     Tram,
+    Bus,
     CityBus,
     IntercityBus,
     SuburbanRailway,
@@ -19,23 +22,25 @@ pub enum Mot {
     Ferry,
     HailedSharedTaxi,
     PlusBus,
+    Footpath,
+    RapidTransit,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 pub enum StatusCode {
     Ok,
     ValidationError,
     ServiceError,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Status {
     code: StatusCode,
     message: Option<String>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct DvbResponse<T: Debug> {
     pub status: Status,
@@ -57,5 +62,11 @@ impl<T: Debug> Deref for DvbResponse<T> {
 
     fn deref(&self) -> &Self::Target {
         &self.content
+    }
+}
+
+impl<T: Debug> DvbResponse<T> {
+    pub fn into_inner(self) -> T {
+        self.content
     }
 }

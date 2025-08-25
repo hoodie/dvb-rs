@@ -8,14 +8,17 @@ async fn main() {
         found.points.len(),
         found.expiration_time
     );
-    for Point {
-        id,
-        city,
-        name,
-        coords: (long, lat),
-        r#type: typ,
-    } in &found.points
+    for (
+        ix,
+        Point {
+            id,
+            city,
+            name,
+            coords: (long, lat),
+            r#type: typ,
+        },
+    ) in found.points.iter().enumerate()
     {
-        println!("({id}/{typ:?}) {city} {name} ({long}, {lat})");
+        println!("{ix}. ({id}/{typ:?}) {city} {name} ({long}, {lat})");
     }
 }

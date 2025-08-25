@@ -9,10 +9,11 @@ edition = "2024"
 
 [dependencies]
 regex = "1.11"
-serde = { version = "1.0", features = ["derive"]}
+serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 num-integer = "0.1"
 pretty_assertions = "1.4"
+schemars = { version = "1.0", features = ["chrono04"]}
 
 [dependencies.reqwest]
 version = "0.12"
@@ -24,4 +25,4 @@ default-features = false
 features = ["clock", "std", "serde"]
 
 [dev-dependencies]
-tokio = { version = "1.46.1", features = ["full"] }
+tokio = { version = "1", features = ["full"] }
