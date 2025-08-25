@@ -5,23 +5,23 @@ use dvb::{
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let query1 = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
-    let query2 = std::env::args().nth(2).unwrap_or("WalpurgisStraße".into());
+    let origin_query = std::env::args().nth(1).unwrap_or("HauptBahnhof".into());
+    let destination_query = std::env::args().nth(2).unwrap_or("WalpurgisStraße".into());
 
-    let start = find_stops(&query1).await?;
-    let Some(start) = start.points.first() else {
-        eprintln!("No stop found for '{query1}'");
+    let origin = find_stops(&origin_query).await?;
+    let Some(origin) = origin.points.first() else {
+        eprintln!("No stop found for '{origin_query}'");
         return Ok(());
     };
 
-    let destination = find_stops(&query2).await?;
+    let destination = find_stops(&destination_query).await?;
     let Some(destination) = destination.points.first() else {
-        eprintln!("No stop found for '{query2}'");
+        eprintln!("No stop found for '{destination_query}'");
         return Ok(());
     };
 
     let monitor_params = monitor::Params {
-        stopid: &start.id,
+        stopid: &origin.id,
         mot: Some(&[Mot::Tram]),
         limit: None,
         ..Default::default()
