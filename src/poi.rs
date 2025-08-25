@@ -1,7 +1,10 @@
 use std::str::FromStr;
 
+use schemars::JsonSchema;
+use serde::Serialize;
+
 /// Represents the type of a Point of Interest (POI)
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, JsonSchema)]
 pub enum PoiType {
     Stop,
     Address,
