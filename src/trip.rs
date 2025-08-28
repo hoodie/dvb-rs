@@ -44,13 +44,25 @@ const TRIP_URL: &str = "https://webapi.vvo-online.de/dm/trip";
 #[derive(Serialize, Debug, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Params<'a> {
+    /// The trip ID to query.
     pub tripid: &'a str,
+    /// The time for which to fetch trip details (DvbTime).
     pub time: DvbTime,
+    /// The stop ID associated with the trip.
     pub stopid: &'a str,
+    /// Whether to include map data.
     pub mapdata: Option<bool>,
 }
 
-/// <https://github.com/kiliankoe/vvo/blob/main/documentation/webapi.md#trip-details>
+/// Fetches detailed information for a specific trip from the VVO WebAPI.
+///
+/// # Arguments
+/// * `params` - Parameters including trip ID, time, stop ID, and optional map data.
+///
+/// # Returns
+/// * `Result<DvbResponse<Trip>>` - The parsed response containing trip details.
+///
+/// Endpoint: `https://webapi.vvo-online.de/dm/trip`
 pub async fn trip_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Trip>> {
     let response = reqwest::Client::new()
         .post(TRIP_URL)

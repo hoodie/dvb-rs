@@ -54,6 +54,16 @@ pub struct TimeTable {
 
 const LINES_URL: &str = "https://webapi.vvo-online.de/stt/lines";
 
+/// Fetches all lines (trams, buses, etc.) departing from the specified stop ID using the VVO WebAPI.
+///
+/// # Arguments
+/// * `stop_id` - The ID of the stop for which to fetch lines.
+/// * `timeout` - Optional timeout in milliseconds for the request (defaults to 15000ms).
+///
+/// # Returns
+/// * `Result<DvbResponse<Lines>>` - The parsed response containing available lines.
+///
+/// Endpoint: `https://webapi.vvo-online.de/stt/lines`
 pub async fn lines(stop_id: &str, timeout: Option<u64>) -> Result<DvbResponse<Lines>> {
     let response: DvbResponse<Lines> = reqwest::Client::new()
         .get(LINES_URL)
