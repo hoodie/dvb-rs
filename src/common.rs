@@ -1,3 +1,5 @@
+//! Common types and enums.
+
 use std::{fmt::Debug, ops::Deref};
 
 use schemars::JsonSchema;

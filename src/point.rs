@@ -1,3 +1,5 @@
+//! Types and utilities for querying stops and points.
+
 use schemars::JsonSchema;
 use serde::{
     Deserialize, Serialize,

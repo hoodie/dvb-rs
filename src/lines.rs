@@ -1,3 +1,5 @@
+//! Types and API for querying available lines (trams, buses, etc.) at a stop.
+
 use std::{fmt::Debug, time::Duration};
 
 use schemars::JsonSchema;
