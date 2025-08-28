@@ -1,3 +1,5 @@
+//! Types and functions for querying trip details and stops.
+
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 

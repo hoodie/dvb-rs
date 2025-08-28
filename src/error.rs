@@ -1,4 +1,4 @@
-//! Unchained Error implementation
+//! Error types and result handling utilities.
 
 use reqwest;
 use std::{fmt, io};

@@ -1,3 +1,5 @@
+//! Departure monitor API types and functions.
+
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 

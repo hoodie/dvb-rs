@@ -1,3 +1,6 @@
+//! Time parsing and formatting utilities for Dresden transport API.
+//! Provides DvbTime for the custom `/Date(...)` format.
+
 use chrono::prelude::*;
 use num_integer::div_mod_floor;
 use regex::Regex;

@@ -1,3 +1,5 @@
+//! Types and utilities for querying Points of Interest (POIs).
+
 use std::str::FromStr;
 
 use schemars::JsonSchema;

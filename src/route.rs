@@ -1,3 +1,5 @@
+//! Route planning and route details for Dresden public transport.
+
 use crate::{DvbResponse, error::Result, time::DvbTime};
 use serde::{Deserialize, Serialize};
 
