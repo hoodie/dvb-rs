@@ -83,30 +83,6 @@ impl<'de> Visitor<'de> for PointVisitor {
     }
 }
 
-#[derive(Serialize, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct Config<'a> {
-    pub query: &'a str,
-    pub limit: Option<u32>,
-    pub stops_only: bool,
-    pub assigedstops: bool,
-    pub dvb: bool,
-    pub format: Format,
-}
-
-impl<'a> Default for Config<'a> {
-    fn default() -> Self {
-        Self {
-            query: Default::default(),
-            limit: Default::default(),
-            stops_only: Default::default(),
-            assigedstops: Default::default(),
-            dvb: true,
-            format: Format::Json,
-        }
-    }
-}
-
 #[derive(Debug, Default, Serialize)]
 pub enum Format {
     #[default]
@@ -122,7 +98,31 @@ pub struct Found {
 
 const POINT_FINDER_URL: &str = "https://webapi.vvo-online.de/tr/pointfinder";
 
-pub async fn point_finder<'a>(config: &Config<'a>) -> Result<DvbResponse<Found>> {
+#[derive(Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct Params<'a> {
+    pub query: &'a str,
+    pub limit: Option<u32>,
+    pub stops_only: bool,
+    pub assigedstops: bool,
+    pub dvb: bool,
+    pub format: Format,
+}
+
+impl<'a> Default for Params<'a> {
+    fn default() -> Self {
+        Self {
+            query: Default::default(),
+            limit: Default::default(),
+            stops_only: Default::default(),
+            assigedstops: Default::default(),
+            dvb: true,
+            format: Format::Json,
+        }
+    }
+}
+
+pub async fn point_finder<'a>(config: &Params<'a>) -> Result<DvbResponse<Found>> {
     let response: Value = reqwest::Client::new()
         .post(POINT_FINDER_URL)
         .json(&config)

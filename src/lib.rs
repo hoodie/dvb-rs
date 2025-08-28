@@ -25,11 +25,11 @@ pub use crate::{
 
 use crate::{
     monitor::DepartureMonitor,
-    point::{Config, Found, point_finder},
+    point::{Found, Params, point_finder},
 };
 
 pub async fn find_stops(query: &str) -> Result<DvbResponse<Found>> {
-    point_finder(&Config {
+    point_finder(&Params {
         query,
         stops_only: true,
         ..Default::default()
@@ -38,7 +38,7 @@ pub async fn find_stops(query: &str) -> Result<DvbResponse<Found>> {
 }
 
 pub async fn find_nearby_stops(query: &str) -> Result<DvbResponse<Found>> {
-    point_finder(&Config {
+    point_finder(&Params {
         query,
         stops_only: false,
         assigedstops: true,
@@ -48,7 +48,7 @@ pub async fn find_nearby_stops(query: &str) -> Result<DvbResponse<Found>> {
 }
 
 pub async fn find_pois(query: &str) -> Result<DvbResponse<Found>> {
-    point_finder(&Config {
+    point_finder(&Params {
         query,
         stops_only: false,
         ..Default::default()

@@ -8,16 +8,6 @@ use crate::{
     time::DvbTime,
 };
 
-#[derive(Serialize, Debug, Default)]
-pub struct Params<'a> {
-    pub stopid: &'a str,
-    pub limit: Option<u32>,
-    pub time: Option<&'a str>,
-    pub isarrival: Option<bool>,
-    pub shorttermchanges: Option<bool>,
-    pub mot: Option<&'a [Mot]>,
-}
-
 #[derive(Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Departure {
@@ -51,6 +41,16 @@ impl DepartureMonitor {
 }
 
 const MONITOR_URL: &str = "https://webapi.vvo-online.de/dm";
+
+#[derive(Serialize, Debug, Default)]
+pub struct Params<'a> {
+    pub stopid: &'a str,
+    pub limit: Option<u32>,
+    pub time: Option<&'a str>,
+    pub isarrival: Option<bool>,
+    pub shorttermchanges: Option<bool>,
+    pub mot: Option<&'a [Mot]>,
+}
 
 pub async fn departure_monitor<'a>(params: Params<'a>) -> Result<DvbResponse<DepartureMonitor>> {
     let result = reqwest::Client::new()

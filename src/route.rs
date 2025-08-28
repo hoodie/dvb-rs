@@ -1,18 +1,6 @@
 use crate::{DvbResponse, error::Result, time::DvbTime};
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Debug)]
-#[serde(rename_all = "camelCase")]
-pub struct Params<'a> {
-    pub origin: &'a str,
-    pub destination: &'a str,
-    pub time: DvbTime,
-    pub isarrivaltime: bool,
-    pub shorttermchanges: bool,
-    pub format: &'a str,
-    pub via: Option<&'a str>,
-}
-
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Route {
@@ -169,6 +157,22 @@ pub struct ParkingLot {
 
 const ROUTE_URL: &str = "https://webapi.vvo-online.de/tr/trips";
 
+#[derive(Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct Params<'a> {
+    pub origin: &'a str,
+    pub destination: &'a str,
+    pub time: DvbTime,
+    pub isarrivaltime: bool,
+    /// Include short-term changes.
+    pub shorttermchanges: bool,
+    /// Response format (e.g., "json").
+    pub format: &'a str, // TODO: verify existence
+    /// Intermediate stop ID.
+    pub via: Option<&'a str>, // TODO: verify existence
+}
+
+/// <https://github.com/kiliankoe/vvo/blob/main/documentation/webapi.md#query-a-trip>
 pub async fn route_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Routes>> {
     let routes = reqwest::Client::new()
         .get(ROUTE_URL)
