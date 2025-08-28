@@ -24,6 +24,15 @@ impl fmt::Debug for DvbTime {
 }
 
 impl DvbTime {
+    /// Returns a human-readable string representing the wait time in minutes from now until this time.
+    ///
+    /// # Example
+    /// ```rust
+    /// # use dvb::DvbTime;
+    /// let future = DvbTime::in_n_minutes(10);
+    /// let wait = future.wait();
+    /// assert!(wait.ends_with("min"));
+    /// ```
     pub fn wait(&self) -> String {
         let now = Local::now();
         let dt: DateTime<FixedOffset> = now.with_timezone(now.offset());
@@ -32,22 +41,48 @@ impl DvbTime {
         format!("{min}min")
     }
 
+    /// Returns the current local time as a `DvbTime`.
     pub fn now() -> Self {
         DvbTime::from(Local::now())
     }
 
+    /// Returns a `DvbTime` representing `mins` minutes from now.
+    ///
+    /// # Example
+    /// ```rust
+    /// # use dvb::DvbTime;
+    /// let t = DvbTime::in_n_minutes(5);
+    /// assert!(t.to_datetime() > DvbTime::now().to_datetime());
+    /// ```
     pub fn in_n_minutes(mins: i64) -> Self {
         DvbTime::from(Local::now() + chrono::Duration::minutes(mins))
     }
 
+    /// Returns the underlying `DateTime<FixedOffset>`.
     pub fn to_datetime(&self) -> DateTime<FixedOffset> {
         self.0
     }
 
+    /// Formats the time as an RFC3339 string.
+    ///
+    /// # Example
+    /// ```rust
+    /// # use dvb::DvbTime;
+    /// let rfc = DvbTime::now().to_rfc3339();
+    /// assert!(rfc.contains('T'));
+    /// ```
     pub fn to_rfc3339(&self) -> String {
         self.0.to_rfc3339()
     }
 
+    /// Returns the time portion as a string (HH:MM:SS).
+    ///
+    /// # Example
+    /// ```rust
+    /// # use dvb::DvbTime;
+    /// let time_str = DvbTime::now().to_time();
+    /// assert!(time_str.contains(':'));
+    /// ```
     pub fn to_time(&self) -> String {
         self.0.time().to_string()
     }
