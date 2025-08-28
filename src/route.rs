@@ -2,6 +2,8 @@
 
 use crate::{DvbResponse, error::Result, time::DvbTime};
 use serde::{Deserialize, Serialize};
+use slug::slugify;
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
@@ -158,6 +160,203 @@ pub struct ParkingLot {
 }
 
 const ROUTE_URL: &str = "https://webapi.vvo-online.de/tr/trips";
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json;
+
+    fn make_partial_route(line: &str, direction: &str, dep_time: Option<DvbTime>) -> PartialRoute {
+        PartialRoute {
+            duration: Some(10),
+            map_data_index: Some(1),
+            mot: Some(Mot {
+                changes: vec![],
+                direction: Some(direction.to_string()),
+                diva: None,
+                dl_id: None,
+                name: Some(line.to_string()),
+                operator_code: None,
+                product_name: None,
+                stateless_id: None,
+                train_number: None,
+                transportation_company: None,
+                r#type: None,
+            }),
+            next_departure_times: dep_time.map(|t| vec![t]),
+            partial_route_id: Some(1),
+            previous_departure_times: None,
+            regular_stops: None,
+            shift: None,
+            infos: None,
+        }
+    }
+
+    #[test]
+    fn test_route_with_partial_route_map_conversion_and_serialization() {
+        use std::str::FromStr;
+        let pr1 = make_partial_route(
+            "3",
+            "Wilder Mann",
+            Some(DvbTime::from_str("/Date(1717236000000+0200)/").unwrap()),
+        );
+        let pr2 = make_partial_route(
+            "3",
+            "Wilder Mann",
+            Some(DvbTime::from_str("/Date(1717236900000+0200)/").unwrap()),
+        );
+        let pr3 = make_partial_route(
+            "7",
+            "Pennrich",
+            Some(DvbTime::from_str("/Date(1717235100000+0200)/").unwrap()),
+        );
+
+        let route = Route {
+            duration: Some(25),
+            fare_zone_destination: Some(1),
+            fare_zone_names: Some("Zone1".to_string()),
+            fare_zone_names_day_ticket: Some("Zone1Day".to_string()),
+            fare_zone_origin: Some(2),
+            interchanges: Some(0),
+            mot_chain: None,
+            net: Some("VVO".to_string()),
+            number_of_fare_zones: Some("2".to_string()),
+            number_of_fare_zones_day_ticket: Some("2".to_string()),
+            partial_routes: Some(vec![pr1, pr2, pr3]),
+            price: Some("2.50".to_string()),
+            price_day_ticket: Some("6.00".to_string()),
+            price_level: Some(1),
+            route_id: Some(42),
+            tickets: None,
+        };
+
+        let mapped: MappedRoute = route.into();
+
+        // Check keys
+        assert!(mapped.partial_routes.contains_key("3-wilder-mann-1"));
+        assert!(mapped.partial_routes.contains_key("3-wilder-mann-2"));
+        assert!(mapped.partial_routes.contains_key("7-pennrich"));
+
+        // Check correct mapping
+        assert_eq!(
+            mapped.partial_routes["3-wilder-mann-1"]
+                .mot
+                .as_ref()
+                .unwrap()
+                .name
+                .as_deref(),
+            Some("3")
+        );
+        assert_eq!(
+            mapped.partial_routes["3-wilder-mann-2"]
+                .mot
+                .as_ref()
+                .unwrap()
+                .direction
+                .as_deref(),
+            Some("Wilder Mann")
+        );
+        assert_eq!(
+            mapped.partial_routes["7-pennrich"]
+                .mot
+                .as_ref()
+                .unwrap()
+                .name
+                .as_deref(),
+            Some("7")
+        );
+
+        // Serialization
+        let json = serde_json::to_string_pretty(&mapped).unwrap();
+        assert!(json.contains("3-wilder-mann-1"));
+        assert!(json.contains("7-pennrich"));
+    }
+}
+
+// New struct for mapped partial routes
+#[derive(Serialize, Deserialize, Debug)]
+pub struct MappedRoute {
+    pub duration: Option<u32>,
+    pub fare_zone_destination: Option<u32>,
+    pub fare_zone_names: Option<String>,
+    pub fare_zone_names_day_ticket: Option<String>,
+    pub fare_zone_origin: Option<u32>,
+    pub interchanges: Option<u32>,
+    pub mot_chain: Option<Vec<MotChain>>,
+    pub net: Option<String>,
+    pub number_of_fare_zones: Option<String>,
+    pub number_of_fare_zones_day_ticket: Option<String>,
+    pub price: Option<String>,
+    pub price_day_ticket: Option<String>,
+    pub price_level: Option<u32>,
+    pub route_id: Option<u32>,
+    pub tickets: Option<Vec<Ticket>>,
+    pub partial_routes: HashMap<String, PartialRoute>,
+}
+
+// From<Route> for RouteWithPartialRouteMap
+impl From<Route> for MappedRoute {
+    fn from(route: Route) -> Self {
+        let mut partial_routes_map: HashMap<String, PartialRoute> = HashMap::new();
+
+        if let Some(partial_routes) = route.partial_routes {
+            // Group by (line name, direction)
+            let mut grouped: HashMap<(String, String), Vec<PartialRoute>> = HashMap::new();
+
+            for pr in partial_routes {
+                let name = pr
+                    .mot
+                    .as_ref()
+                    .and_then(|mot| mot.name.clone())
+                    .unwrap_or_default();
+                let direction = pr
+                    .mot
+                    .as_ref()
+                    .and_then(|mot| mot.direction.clone())
+                    .unwrap_or_default();
+                grouped.entry((name, direction)).or_default().push(pr);
+            }
+
+            // For each group, sort by departure time and insert with index
+            for ((name, direction), mut prs) in grouped {
+                prs.sort_by_key(|pr| {
+                    pr.next_departure_times
+                        .as_ref()
+                        .and_then(|times| times.first().cloned())
+                });
+
+                let prs_len = prs.len();
+                for (idx, pr) in prs.into_iter().enumerate() {
+                    let mut key = format!("{}-{}", name, direction);
+                    key = slugify(&key);
+                    if prs_len > 1 {
+                        key = format!("{}-{}", key, idx + 1);
+                    }
+                    partial_routes_map.insert(key, pr);
+                }
+            }
+        }
+
+        MappedRoute {
+            duration: route.duration,
+            fare_zone_destination: route.fare_zone_destination,
+            fare_zone_names: route.fare_zone_names,
+            fare_zone_names_day_ticket: route.fare_zone_names_day_ticket,
+            fare_zone_origin: route.fare_zone_origin,
+            interchanges: route.interchanges,
+            mot_chain: route.mot_chain,
+            net: route.net,
+            number_of_fare_zones: route.number_of_fare_zones,
+            number_of_fare_zones_day_ticket: route.number_of_fare_zones_day_ticket,
+            price: route.price,
+            price_day_ticket: route.price_day_ticket,
+            price_level: route.price_level,
+            route_id: route.route_id,
+            tickets: route.tickets,
+            partial_routes: partial_routes_map,
+        }
+    }
+}
 
 #[derive(Serialize, Debug)]
 #[serde(rename_all = "camelCase")]

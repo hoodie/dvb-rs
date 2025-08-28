@@ -14,6 +14,7 @@ serde_json = "1.0"
 num-integer = "0.1"
 pretty_assertions = "1.4"
 schemars = { version = "1.0", features = ["chrono04"]}
+slug = "0.1.6"
 
 [dependencies.reqwest]
 version = "0.12"

@@ -1,0 +1,606 @@
+[
+  {
+    "duration": 6,
+    "fare_zone_destination": 10,
+    "fare_zone_names": "TZ Dresden (10)",
+    "fare_zone_names_day_ticket": "TZ Dresden (10)",
+    "fare_zone_origin": 10,
+    "interchanges": 0,
+    "mot_chain": [
+      {
+        "Changes": [],
+        "Direction": "Wilder Mann",
+        "Diva": {
+          "Network": "voe",
+          "Number": "11003"
+        },
+        "DlId": "de:vvo:11-3",
+        "Name": "3",
+        "OperatorCode": "16",
+        "ProductName": "Straßenbahn",
+        "StatelessId": "voe:11003: :H:j25",
+        "TrainNumber": "2309",
+        "TransportationCompany": "DVB",
+        "Type": "Tram"
+      }
+    ],
+    "net": "voe",
+    "number_of_fare_zones": "1 Tarifzone",
+    "number_of_fare_zones_day_ticket": "1 Tarifzone",
+    "price": "3,40",
+    "price_day_ticket": "9,00",
+    "price_level": 1,
+    "route_id": 0,
+    "tickets": [
+      {
+        "FareZoneNames": "",
+        "Name": "VVO 4er-Karte",
+        "NumberOfFareZones": "Kurzstrecke",
+        "Price": "8,00",
+        "PriceLevel": null
+      },
+      {
+        "FareZoneNames": "TZ Dresden (10)",
+        "Name": "VVO Einzelfahrt",
+        "NumberOfFareZones": "1 Tarifzone",
+        "Price": "3,40",
+        "PriceLevel": 1
+      },
+      {
+        "FareZoneNames": "TZ Dresden (10)",
+        "Name": "VVO Tageskarte",
+        "NumberOfFareZones": "1 Tarifzone",
+        "Price": "9,00",
+        "PriceLevel": 1
+      }
+    ],
+    "partial_routes": {
+      "3-wilder-mann": {
+        "Duration": 6,
+        "MapDataIndex": 0,
+        "Mot": {
+          "Changes": [],
+          "Direction": "Wilder Mann",
+          "Diva": {
+            "Network": "voe",
+            "Number": "11003"
+          },
+          "DlId": "de:vvo:11-3",
+          "Name": "3",
+          "OperatorCode": "16",
+          "ProductName": "Straßenbahn",
+          "StatelessId": "voe:11003: :H:j25",
+          "TrainNumber": "2309",
+          "TransportationCompany": "DVB",
+          "Type": "Tram"
+        },
+        "NextDepartureTimes": [
+          "/Date(1756420500000+0000)/",
+          "/Date(1756421640000+0000)/"
+        ],
+        "PartialRouteId": 0,
+        "PreviousDepartureTimes": [
+          "/Date(1756416900000+0000)/",
+          "/Date(1756415100000+0000)/"
+        ],
+        "RegularStops": [
+          {
+            "ArrivalTime": "/Date(1756418700000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000028",
+            "DepartureTime": "/Date(1756418700000+0000)/",
+            "DhId": "de:14612:28",
+            "Latitude": 5657497.0,
+            "Longitude": 4621685.0,
+            "Name": "Hauptbahnhof",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "3",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756418760000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000032",
+            "DepartureTime": "/Date(1756418760000+0000)/",
+            "DhId": "de:14612:32",
+            "Latitude": 5657694.0,
+            "Longitude": 4621797.0,
+            "Name": "Hauptbahnhof Nord",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756418820000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000029",
+            "DepartureTime": "/Date(1756418820000+0000)/",
+            "DhId": "de:14612:29",
+            "Latitude": 5657977.0,
+            "Longitude": 4621992.0,
+            "Name": "Walpurgisstraße",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756418940000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000003",
+            "DepartureTime": "/Date(1756418940000+0000)/",
+            "DhId": "de:14612:3",
+            "Latitude": 5658327.0,
+            "Longitude": 4621934.0,
+            "Name": "Prager Straße",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756419060000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000037",
+            "DepartureTime": "/Date(1756419060000+0000)/",
+            "DhId": "de:14612:37",
+            "Latitude": 5658699.0,
+            "Longitude": 4621658.0,
+            "Name": "Postplatz",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "4",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          }
+        ],
+        "Shift": "None",
+        "Infos": null
+      }
+    }
+  },
+  {
+    "duration": 6,
+    "fare_zone_destination": 10,
+    "fare_zone_names": "TZ Dresden (10)",
+    "fare_zone_names_day_ticket": "TZ Dresden (10)",
+    "fare_zone_origin": 10,
+    "interchanges": 0,
+    "mot_chain": [
+      {
+        "Changes": [
+          "23858",
+          "23691"
+        ],
+        "Direction": "Weixdorf",
+        "Diva": {
+          "Network": "voe",
+          "Number": "11007"
+        },
+        "DlId": "de:vvo:11-7",
+        "Name": "7",
+        "OperatorCode": "16",
+        "ProductName": "Straßenbahn",
+        "StatelessId": "voe:11007: :R:j25",
+        "TrainNumber": "2308",
+        "TransportationCompany": "DVB",
+        "Type": "Tram"
+      }
+    ],
+    "net": "voe",
+    "number_of_fare_zones": "1 Tarifzone",
+    "number_of_fare_zones_day_ticket": "1 Tarifzone",
+    "price": "3,40",
+    "price_day_ticket": "9,00",
+    "price_level": 1,
+    "route_id": 1,
+    "tickets": [
+      {
+        "FareZoneNames": "",
+        "Name": "VVO 4er-Karte",
+        "NumberOfFareZones": "Kurzstrecke",
+        "Price": "8,00",
+        "PriceLevel": null
+      },
+      {
+        "FareZoneNames": "TZ Dresden (10)",
+        "Name": "VVO Einzelfahrt",
+        "NumberOfFareZones": "1 Tarifzone",
+        "Price": "3,40",
+        "PriceLevel": 1
+      },
+      {
+        "FareZoneNames": "TZ Dresden (10)",
+        "Name": "VVO Tageskarte",
+        "NumberOfFareZones": "1 Tarifzone",
+        "Price": "9,00",
+        "PriceLevel": 1
+      }
+    ],
+    "partial_routes": {
+      "7-weixdorf": {
+        "Duration": 6,
+        "MapDataIndex": 0,
+        "Mot": {
+          "Changes": [
+            "23858",
+            "23691"
+          ],
+          "Direction": "Weixdorf",
+          "Diva": {
+            "Network": "voe",
+            "Number": "11007"
+          },
+          "DlId": "de:vvo:11-7",
+          "Name": "7",
+          "OperatorCode": "16",
+          "ProductName": "Straßenbahn",
+          "StatelessId": "voe:11007: :R:j25",
+          "TrainNumber": "2308",
+          "TransportationCompany": "DVB",
+          "Type": "Tram"
+        },
+        "NextDepartureTimes": [
+          "/Date(1756421340000+0000)/",
+          "/Date(1756433580000+0000)/"
+        ],
+        "PartialRouteId": 0,
+        "PreviousDepartureTimes": [],
+        "RegularStops": [
+          {
+            "ArrivalTime": "/Date(1756419540000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000028",
+            "DepartureTime": "/Date(1756419540000+0000)/",
+            "DhId": "de:14612:28",
+            "Latitude": 5657627.0,
+            "Longitude": 4621648.0,
+            "Name": "Hauptbahnhof",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756419600000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000032",
+            "DepartureTime": "/Date(1756419600000+0000)/",
+            "DhId": "de:14612:32",
+            "Latitude": 5657694.0,
+            "Longitude": 4621797.0,
+            "Name": "Hauptbahnhof Nord",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756419660000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000029",
+            "DepartureTime": "/Date(1756419660000+0000)/",
+            "DhId": "de:14612:29",
+            "Latitude": 5657977.0,
+            "Longitude": 4621992.0,
+            "Name": "Walpurgisstraße",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756419780000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000003",
+            "DepartureTime": "/Date(1756419780000+0000)/",
+            "DhId": "de:14612:3",
+            "Latitude": 5658327.0,
+            "Longitude": 4621934.0,
+            "Name": "Prager Straße",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756419900000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000037",
+            "DepartureTime": "/Date(1756419900000+0000)/",
+            "DhId": "de:14612:37",
+            "Latitude": 5658699.0,
+            "Longitude": 4621658.0,
+            "Name": "Postplatz",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "4",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          }
+        ],
+        "Shift": "None",
+        "Infos": null
+      }
+    }
+  },
+  {
+    "duration": 10,
+    "fare_zone_destination": 10,
+    "fare_zone_names": "TZ Dresden (10)",
+    "fare_zone_names_day_ticket": "TZ Dresden (10)",
+    "fare_zone_origin": 10,
+    "interchanges": 0,
+    "mot_chain": [
+      {
+        "Changes": [],
+        "Direction": null,
+        "Diva": {
+          "Network": "",
+          "Number": ""
+        },
+        "DlId": "",
+        "Name": "Fussweg",
+        "OperatorCode": "",
+        "ProductName": "Fussweg",
+        "StatelessId": ":: : :",
+        "TrainNumber": "",
+        "TransportationCompany": "",
+        "Type": "Footpath"
+      },
+      {
+        "Changes": [],
+        "Direction": "Bühlau",
+        "Diva": {
+          "Network": "voe",
+          "Number": "11011"
+        },
+        "DlId": "de:vvo:11-11",
+        "Name": "11",
+        "OperatorCode": "16",
+        "ProductName": "Straßenbahn",
+        "StatelessId": "voe:11011: :R:j25",
+        "TrainNumber": "214",
+        "TransportationCompany": "DVB",
+        "Type": "Tram"
+      }
+    ],
+    "net": "voe",
+    "number_of_fare_zones": "1 Tarifzone",
+    "number_of_fare_zones_day_ticket": "1 Tarifzone",
+    "price": "3,40",
+    "price_day_ticket": "9,00",
+    "price_level": 1,
+    "route_id": 2,
+    "tickets": [
+      {
+        "FareZoneNames": "",
+        "Name": "VVO 4er-Karte",
+        "NumberOfFareZones": "Kurzstrecke",
+        "Price": "8,00",
+        "PriceLevel": null
+      },
+      {
+        "FareZoneNames": "TZ Dresden (10)",
+        "Name": "VVO Einzelfahrt",
+        "NumberOfFareZones": "1 Tarifzone",
+        "Price": "3,40",
+        "PriceLevel": 1
+      },
+      {
+        "FareZoneNames": "TZ Dresden (10)",
+        "Name": "VVO Tageskarte",
+        "NumberOfFareZones": "1 Tarifzone",
+        "Price": "9,00",
+        "PriceLevel": 1
+      }
+    ],
+    "partial_routes": {
+      "fussweg": {
+        "Duration": 5,
+        "MapDataIndex": 0,
+        "Mot": {
+          "Changes": [],
+          "Direction": null,
+          "Diva": {
+            "Network": "",
+            "Number": ""
+          },
+          "DlId": "",
+          "Name": "Fussweg",
+          "OperatorCode": "",
+          "ProductName": "Fussweg",
+          "StatelessId": ":: : :",
+          "TrainNumber": "",
+          "TransportationCompany": "",
+          "Type": "Footpath"
+        },
+        "NextDepartureTimes": [],
+        "PartialRouteId": null,
+        "PreviousDepartureTimes": [],
+        "RegularStops": [
+          {
+            "ArrivalTime": "/Date(1756420140000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000028",
+            "DepartureTime": "/Date(1756420140000+0000)/",
+            "DhId": "de:14612:28",
+            "Latitude": 5657627.0,
+            "Longitude": 4621648.0,
+            "Name": "Hauptbahnhof",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": null,
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756420440000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000032",
+            "DepartureTime": "/Date(1756420440000+0000)/",
+            "DhId": "de:14612:32",
+            "Latitude": 5657694.0,
+            "Longitude": 4621797.0,
+            "Name": "Hauptbahnhof Nord",
+            "Occupancy": "Unknown",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          }
+        ],
+        "Shift": "None",
+        "Infos": null
+      },
+      "11-buhlau": {
+        "Duration": 5,
+        "MapDataIndex": 1,
+        "Mot": {
+          "Changes": [],
+          "Direction": "Bühlau",
+          "Diva": {
+            "Network": "voe",
+            "Number": "11011"
+          },
+          "DlId": "de:vvo:11-11",
+          "Name": "11",
+          "OperatorCode": "16",
+          "ProductName": "Straßenbahn",
+          "StatelessId": "voe:11011: :R:j25",
+          "TrainNumber": "214",
+          "TransportationCompany": "DVB",
+          "Type": "Tram"
+        },
+        "NextDepartureTimes": [
+          "/Date(1756424040000+0000)/",
+          "/Date(1756427640000+0000)/"
+        ],
+        "PartialRouteId": 1,
+        "PreviousDepartureTimes": [
+          "/Date(1756418640000+0000)/",
+          "/Date(1756416840000+0000)/"
+        ],
+        "RegularStops": [
+          {
+            "ArrivalTime": "/Date(1756420440000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000032",
+            "DepartureTime": "/Date(1756420440000+0000)/",
+            "DhId": "de:14612:32",
+            "Latitude": 5657694.0,
+            "Longitude": 4621797.0,
+            "Name": "Hauptbahnhof Nord",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756420500000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000029",
+            "DepartureTime": "/Date(1756420500000+0000)/",
+            "DhId": "de:14612:29",
+            "Latitude": 5657977.0,
+            "Longitude": 4621992.0,
+            "Name": "Walpurgisstraße",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756420620000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000003",
+            "DepartureTime": "/Date(1756420620000+0000)/",
+            "DhId": "de:14612:3",
+            "Latitude": 5658327.0,
+            "Longitude": 4621934.0,
+            "Name": "Prager Straße",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "1",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          },
+          {
+            "ArrivalTime": "/Date(1756420740000+0000)/",
+            "CancelReasons": [],
+            "DataId": "33000037",
+            "DepartureTime": "/Date(1756420740000+0000)/",
+            "DhId": "de:14612:37",
+            "Latitude": 5658699.0,
+            "Longitude": 4621658.0,
+            "Name": "Postplatz",
+            "Occupancy": "ManySeats",
+            "ParkAndRail": [],
+            "Place": "Dresden",
+            "Platform": {
+              "Name": "4",
+              "Type": "Platform"
+            },
+            "Type": "Stop"
+          }
+        ],
+        "Shift": "None",
+        "Infos": null
+      }
+    }
+  }
+]
