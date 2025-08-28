@@ -44,14 +44,23 @@ const MONITOR_URL: &str = "https://webapi.vvo-online.de/dm";
 
 #[derive(Serialize, Debug, Default)]
 pub struct Params<'a> {
+    /// The stop ID to monitor.
     pub stopid: &'a str,
+    /// Maximum number of departures to return.
     pub limit: Option<u32>,
+    /// Time for the departure query.
     pub time: Option<&'a str>,
+    /// If true, time is interpreted as arrival time.
     pub isarrival: Option<bool>,
+    /// Include short-term changes.
     pub shorttermchanges: Option<bool>,
+    /// Filter by mode of transport.
     pub mot: Option<&'a [Mot]>,
 }
 
+/// Fetches upcoming departures from a specified stop using the VVO WebAPI.
+///
+/// Endpoint: `https://webapi.vvo-online.de/dm`
 pub async fn departure_monitor<'a>(params: Params<'a>) -> Result<DvbResponse<DepartureMonitor>> {
     let result = reqwest::Client::new()
         .post(MONITOR_URL)

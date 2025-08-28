@@ -160,9 +160,13 @@ const ROUTE_URL: &str = "https://webapi.vvo-online.de/tr/trips";
 #[derive(Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Params<'a> {
+    /// Origin stop ID.
     pub origin: &'a str,
+    /// Destination stop ID.
     pub destination: &'a str,
+    /// Time for the query (DvbTime).
     pub time: DvbTime,
+    /// Interpret time as arrival time.
     pub isarrivaltime: bool,
     /// Include short-term changes.
     pub shorttermchanges: bool,
@@ -172,7 +176,9 @@ pub struct Params<'a> {
     pub via: Option<&'a str>, // TODO: verify existence
 }
 
-/// <https://github.com/kiliankoe/vvo/blob/main/documentation/webapi.md#query-a-trip>
+/// Queries possible routes between two stops using the VVO WebAPI.
+///
+/// Endpoint: `https://webapi.vvo-online.de/tr/trips`
 pub async fn route_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Routes>> {
     let routes = reqwest::Client::new()
         .get(ROUTE_URL)
