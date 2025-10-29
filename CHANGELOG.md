@@ -1,5 +1,12 @@
 # Changelog
 
+### [v0.7.1](https://github.com/hoodie/dvb-rs/compare/v0.7.0...v0.7.1) (2025-10-29)
+
+#### Fixes
+
+* add module-level doc comments to all source files
+([bf882ba](https://github.com/hoodie/dvb-rs/commit/bf882ba8bc7d5573bb3a366fd9a1aad83adcb920))
+
 ## [v0.7.0](https://github.com/hoodie/dvb-rs/compare/v0.6.0...v0.7.0) (2025-10-29)
 
 ## [v0.6.0](https://github.com/hoodie/dvb-rs/compare/v0.5.0...v0.6.0) (2025-08-26)
