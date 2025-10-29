@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.7.0](https://github.com/hoodie/dvb-rs/compare/v0.6.0...v0.7.0) (2025-10-29)
+
 ## [v0.6.0](https://github.com/hoodie/dvb-rs/compare/v0.5.0...v0.6.0) (2025-08-26)
 
 ### ⚠ BREAKING CHANGE
