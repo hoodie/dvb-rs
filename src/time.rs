@@ -14,7 +14,7 @@ use std::{
     string::ToString,
 };
 
-#[derive(JsonSchema)]
+#[derive(Clone, JsonSchema)]
 pub struct DvbTime(DateTime<FixedOffset>);
 
 impl fmt::Debug for DvbTime {

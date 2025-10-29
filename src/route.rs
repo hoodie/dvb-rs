@@ -1,7 +1,8 @@
 use crate::{DvbResponse, error::Result, time::DvbTime};
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Route {
     pub duration: Option<u32>,
@@ -36,7 +37,7 @@ pub struct Routes {
 //     // Expand as needed
 // }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct MotChain {
     pub changes: Option<Vec<String>>,
@@ -52,14 +53,14 @@ pub struct MotChain {
     pub r#type: Option<crate::common::Mot>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Diva {
     pub network: Option<String>,
     pub number: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct PartialRoute {
     pub duration: Option<u32>,
@@ -73,7 +74,7 @@ pub struct PartialRoute {
     pub infos: Option<Vec<String>>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Mot {
     #[serde(default)]
@@ -90,7 +91,7 @@ pub struct Mot {
     pub r#type: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RegularStop {
     pub arrival_time: Option<DvbTime>,
@@ -109,14 +110,14 @@ pub struct RegularStop {
     pub r#type: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Platform {
     pub name: Option<String>,
     pub r#type: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Ticket {
     pub fare_zone_names: Option<String>,
@@ -126,7 +127,7 @@ pub struct Ticket {
     pub price_level: Option<u32>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ParkAndRail {
     pub coordinates: Option<Coordinate>,
@@ -138,14 +139,14 @@ pub struct ParkAndRail {
     pub total_spaces: Option<u32>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Coordinate {
     pub lat: Option<f64>,
     pub lng: Option<f64>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ParkingLot {
     pub coordinates: Coordinate,
@@ -174,6 +175,16 @@ pub struct Params<'a> {
     pub format: &'a str, // TODO: verify existence
     /// Intermediate stop ID.
     pub via: Option<&'a str>, // TODO: verify existence
+}
+
+pub async fn route_details_json<'a>(params: &Params<'a>) -> Result<Value> {
+    Ok(reqwest::Client::new()
+        .get(ROUTE_URL)
+        .query(&params)
+        .send()
+        .await?
+        .json()
+        .await?)
 }
 
 /// Queries possible routes between two stops using the VVO WebAPI.

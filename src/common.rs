@@ -9,7 +9,7 @@ pub enum ArrivalState {
     InTime,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
 #[non_exhaustive]
 pub enum Mot {
     Tram,
