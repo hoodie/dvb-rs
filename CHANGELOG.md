@@ -1,5 +1,12 @@
 # Changelog
 
+### [v0.7.2](https://github.com/hoodie/dvb-rs/compare/v0.7.1...v0.7.2) (2025-12-19)
+
+#### Features
+
+* add feature to serialize dvb-time stamps to iso
+([ce6899c](https://github.com/hoodie/dvb-rs/commit/ce6899ce807332cc5d5f4ff4e7fec458fa34701a))
+
 ### [v0.7.1](https://github.com/hoodie/dvb-rs/compare/v0.7.0...v0.7.1) (2025-10-29)
 
 #### Fixes
