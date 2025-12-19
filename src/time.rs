@@ -175,9 +175,32 @@ impl fmt::Display for DvbTime {
     }
 }
 
+/// Serializes a DvbTime as an ISO8601/RFC3339 string.
+///
+/// Use with `#[serde(serialize_with = "serialize_as_iso8601")]` to explicitly
+/// serialize as ISO8601, or enable the `iso8601-serialization` feature to make
+/// this the default behavior for all DvbTime instances.
+#[cfg(feature = "iso8601-serialization")]
+fn serialize_as_iso8601<S: Serializer>(dt: &DvbTime, serializer: S) -> Result<S::Ok, S::Error> {
+    serializer.serialize_str(&dt.to_rfc3339())
+}
+
+/// Serializes DvbTime.
+///
+/// By default, serializes to the DVB `/Date(...)` format.
+/// With the `iso8601-serialization` feature enabled, serializes to ISO8601/RFC3339 format.
+///
+/// Note: Deserialization always expects the DVB `/Date(...)` format regardless of this feature.
 impl Serialize for DvbTime {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        serializer.serialize_str(&self.to_string())
+        #[cfg(feature = "iso8601-serialization")]
+        {
+            serialize_as_iso8601(self, serializer)
+        }
+        #[cfg(not(feature = "iso8601-serialization"))]
+        {
+            serializer.serialize_str(&self.to_string())
+        }
     }
 }
 
@@ -236,5 +259,31 @@ mod tests {
         let dvb = "/Date(155581260000-0000)/";
         let parsed = DvbTime::from_str(dvb);
         println!("{parsed:?}");
+    }
+
+    #[test]
+    fn deserialize_dvb_format() {
+        let json = r#""/Date(1609459200000+0100)/""#;
+        let dt: DvbTime = serde_json::from_str(json).unwrap();
+        assert!(dt.to_datetime().timestamp() > 0);
+    }
+
+    #[test]
+    #[cfg(not(feature = "iso8601-serialization"))]
+    fn serialize_dvb_format_default() {
+        let dt = DvbTime::from_str("/Date(1609459200000+0100)/").unwrap();
+        let json = serde_json::to_string(&dt).unwrap();
+        assert!(json.contains("/Date("));
+        assert!(json.contains(")/"));
+    }
+
+    #[test]
+    #[cfg(feature = "iso8601-serialization")]
+    fn serialize_iso8601_format_with_feature() {
+        let dt = DvbTime::from_str("/Date(1609459200000+0100)/").unwrap();
+        let json = serde_json::to_string(&dt).unwrap();
+        assert!(json.contains("T"));
+        assert!(json.contains("Z") || json.contains("+") || json.contains("-"));
+        assert!(!json.contains("/Date("));
     }
 }
