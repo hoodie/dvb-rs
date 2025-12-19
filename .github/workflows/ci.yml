@@ -21,6 +21,12 @@ jobs:
       - name: check default-features
         run: cargo check
 
+      - name: check no-default-features
+        run: cargo check --no-default-features
+
+      - name: check iso8601-serialization feature
+        run: cargo check --features iso8601-serialization
+
       - name: check all-features
         run: cargo check --all-features
 
@@ -33,8 +39,14 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
 
-      - name: test
+      - name: test default features
         run: cargo test
+
+      - name: test with iso8601-serialization feature
+        run: cargo test --features iso8601-serialization
+
+      - name: test all features
+        run: cargo test --all-features
 
   fmtclippy:
     runs-on: ubuntu-latest
