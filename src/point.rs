@@ -15,7 +15,7 @@ use crate::{
     poi::{PoiId, PoiType},
 };
 
-#[derive(Debug, Serialize, JsonSchema)]
+#[derive(Clone, Debug, Serialize, JsonSchema)]
 pub struct Point {
     pub id: String,
     pub city: String,

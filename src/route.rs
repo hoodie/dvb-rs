@@ -4,7 +4,7 @@ use crate::{DvbResponse, error::Result, time::DvbTime};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Route {
     pub duration: Option<u32>,
@@ -26,7 +26,7 @@ pub struct Route {
     pub tickets: Option<Vec<Ticket>>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Routes {
     #[serde(default)]
@@ -39,7 +39,7 @@ pub struct Routes {
 //     // Expand as needed
 // }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct MotChain {
     pub changes: Option<Vec<String>>,
@@ -55,14 +55,14 @@ pub struct MotChain {
     pub r#type: Option<crate::common::Mot>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Diva {
     pub network: Option<String>,
     pub number: Option<String>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct PartialRoute {
     pub duration: Option<u32>,
@@ -76,7 +76,7 @@ pub struct PartialRoute {
     pub infos: Option<Vec<String>>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Mot {
     #[serde(default)]
@@ -93,7 +93,7 @@ pub struct Mot {
     pub r#type: Option<String>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct RegularStop {
     pub arrival_time: Option<DvbTime>,
@@ -112,14 +112,14 @@ pub struct RegularStop {
     pub r#type: Option<String>,
 }
 
-#[derive(Clone, Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Platform {
     pub name: Option<String>,
     pub r#type: Option<String>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Ticket {
     pub fare_zone_names: Option<String>,
@@ -129,7 +129,7 @@ pub struct Ticket {
     pub price_level: Option<u32>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct ParkAndRail {
     pub coordinates: Option<Coordinate>,
@@ -141,14 +141,14 @@ pub struct ParkAndRail {
     pub total_spaces: Option<u32>,
 }
 
-#[derive(Clone, Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Coordinate {
     pub lat: Option<f64>,
     pub lng: Option<f64>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct ParkingLot {
     pub coordinates: Coordinate,
@@ -160,7 +160,7 @@ pub struct ParkingLot {
 
 const ROUTE_URL: &str = "https://webapi.vvo-online.de/tr/trips";
 
-#[derive(Serialize, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Params<'a> {
     /// Origin stop ID.

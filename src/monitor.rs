@@ -10,7 +10,7 @@ use crate::{
     time::DvbTime,
 };
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Departure {
     pub id: String,
@@ -24,7 +24,7 @@ pub struct Departure {
     // diva
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct DepartureMonitor {
     pub name: Option<String>,
@@ -44,7 +44,7 @@ impl DepartureMonitor {
 
 const MONITOR_URL: &str = "https://webapi.vvo-online.de/dm";
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Clone, Debug, Default)]
 pub struct Params<'a> {
     /// The stop ID to monitor.
     pub stopid: &'a str,

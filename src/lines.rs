@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{DvbResponse, Mot, error::Result};
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Mode {
     title: String,
@@ -15,20 +15,20 @@ pub struct Mode {
     icon_url: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Diva {
     pub network: String,
     pub number: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Lines {
     pub lines: Vec<Line>,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Line {
     pub name: String,
@@ -40,14 +40,14 @@ pub struct Line {
     pub directions: Vec<Direction>,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Direction {
     name: String,
     time_tables: Vec<TimeTable>,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Clone, Serialize, Deserialize, JsonSchema, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct TimeTable {
     id: String,

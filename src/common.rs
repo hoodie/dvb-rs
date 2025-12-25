@@ -5,13 +5,13 @@ use std::{fmt::Debug, ops::Deref};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 pub enum ArrivalState {
     Delayed,
     InTime,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize, JsonSchema)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[non_exhaustive]
 pub enum Mot {
     Tram,
@@ -28,21 +28,21 @@ pub enum Mot {
     RapidTransit,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 pub enum StatusCode {
     Ok,
     ValidationError,
     ServiceError,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Status {
     code: StatusCode,
     message: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct DvbResponse<T: Debug> {
     pub status: Status,

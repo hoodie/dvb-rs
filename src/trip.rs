@@ -5,14 +5,14 @@ use serde::{Deserialize, Serialize};
 
 use crate::{DvbResponse, error::Result, time::DvbTime};
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Platform {
     name: String,
     r#type: String, // enum PlatformType {Platform}
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub enum Position {
     Previous,
@@ -20,7 +20,7 @@ pub enum Position {
     Next,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Stop {
     pub id: String,
@@ -34,7 +34,7 @@ pub struct Stop {
     pub time: DvbTime,
 }
 
-#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
 pub struct Trip {
     #[serde(default)]
@@ -43,7 +43,7 @@ pub struct Trip {
 
 const TRIP_URL: &str = "https://webapi.vvo-online.de/dm/trip";
 
-#[derive(Serialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Clone, Debug, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct Params<'a> {
     /// The trip ID to query.

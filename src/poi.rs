@@ -6,7 +6,7 @@ use schemars::JsonSchema;
 use serde::Serialize;
 
 /// Represents the type of a Point of Interest (POI)
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, JsonSchema)]
+#[derive(Serialize, JsonSchema, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum PoiType {
     Stop,
     Address,
@@ -14,6 +14,7 @@ pub enum PoiType {
     Poi,
 }
 
+#[derive(Serialize, JsonSchema, Debug, Clone, PartialEq, Eq)]
 pub struct PoiId {
     pub id: String,
     pub r#type: PoiType,
