@@ -1,5 +1,12 @@
 # Changelog
 
+### [v0.7.3](https://github.com/hoodie/dvb-rs/compare/v0.7.2...v0.7.3) (2025-12-25)
+
+#### Fixes
+
+* add missing Clone and Deserialize implementations
+([4d42b63](https://github.com/hoodie/dvb-rs/commit/4d42b63c9afc13b74b914bf180545dc02e90aeb8))
+
 ### [v0.7.2](https://github.com/hoodie/dvb-rs/compare/v0.7.1...v0.7.2) (2025-12-19)
 
 #### Features
