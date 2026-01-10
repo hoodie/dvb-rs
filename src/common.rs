@@ -26,6 +26,7 @@ pub enum Mot {
     PlusBus,
     Footpath,
     RapidTransit,
+    BusOnRequest,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
