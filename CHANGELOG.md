@@ -1,5 +1,12 @@
 # Changelog
 
+### [v0.7.4](https://github.com/hoodie/dvb-rs/compare/v0.7.3...v0.7.4) (2026-01-11)
+
+#### Fixes
+
+* add BusOnRequest to Mode of Transport enum
+([793f8cb](https://github.com/hoodie/dvb-rs/commit/793f8cb7d8cf3bb45c7035f1385b711a0ba05382))
+
 ### [v0.7.3](https://github.com/hoodie/dvb-rs/compare/v0.7.2...v0.7.3) (2025-12-25)
 
 #### Fixes
