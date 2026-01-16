@@ -2,6 +2,7 @@
 authors = ["Hendrik Sollich <hendrik@hoodie.de>"]
 description = "An unofficial crate to query publicly accessible API methods for Dresden's public transport system."
 documentation = "https://docs.rs/dvb/"
+repository = "https://github.com/hoodie/dvb-rs"
 license = "MIT/Apache-2.0"
 name = "dvb"
 version = "0.7.4"
