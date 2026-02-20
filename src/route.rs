@@ -181,8 +181,8 @@ pub struct Params<'a> {
 
 pub async fn route_details_json<'a>(params: &Params<'a>) -> Result<Value> {
     Ok(reqwest::Client::new()
-        .get(ROUTE_URL)
-        .query(&params)
+        .post(ROUTE_URL)
+        .json(&params)
         .send()
         .await?
         .json()
@@ -200,8 +200,8 @@ pub async fn route_details_json<'a>(params: &Params<'a>) -> Result<Value> {
 /// Endpoint: `https://webapi.vvo-online.de/tr/trips`
 pub async fn route_details<'a>(params: &Params<'a>) -> Result<DvbResponse<Routes>> {
     let routes = reqwest::Client::new()
-        .get(ROUTE_URL)
-        .query(&params)
+        .post(ROUTE_URL)
+        .json(&params)
         .send()
         .await?
         .json()

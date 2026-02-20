@@ -68,8 +68,8 @@ const LINES_URL: &str = "https://webapi.vvo-online.de/stt/lines";
 /// Endpoint: `https://webapi.vvo-online.de/stt/lines`
 pub async fn lines(stop_id: &str, timeout: Option<u64>) -> Result<DvbResponse<Lines>> {
     let response: DvbResponse<Lines> = reqwest::Client::new()
-        .get(LINES_URL)
-        .query(&[("format", "json"), ("stopid", stop_id)])
+        .post(LINES_URL)
+        .json(&serde_json::json!({ "stopid": stop_id, "format": "json" }))
         .timeout(Duration::from_millis(timeout.unwrap_or(15000)))
         .send()
         .await?
