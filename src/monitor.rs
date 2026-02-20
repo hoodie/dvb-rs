@@ -12,16 +12,36 @@ use crate::{
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
+pub struct Platform {
+    pub name: String,
+    /// Either `"Platform"` or `"Railtrack"`.
+    pub r#type: String,
+}
+
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
+#[serde(rename_all = "PascalCase")]
+pub struct Diva {
+    pub number: String,
+    pub network: String,
+}
+
+#[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
+#[serde(rename_all = "PascalCase")]
 pub struct Departure {
     pub id: String,
+    pub dl_id: Option<String>,
     pub line_name: String,
     pub direction: String,
-    // platform
+    pub platform: Option<Platform>,
     pub mot: Mot,
+    pub scheduled_time: Option<DvbTime>,
     pub real_time: Option<DvbTime>,
     pub state: Option<ArrivalState>,
     pub route_changes: Option<Vec<String>>,
-    // diva
+    pub diva: Option<Diva>,
+    #[serde(default)]
+    pub cancel_reasons: Vec<String>,
+    pub occupancy: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
