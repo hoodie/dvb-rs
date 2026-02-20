@@ -35,6 +35,8 @@ async fn main() -> dvb::Result<()> {
         shorttermchanges: true,
         format: "json",
         via: None,
+        mobility_settings: None,
+        standard_settings: None,
     };
 
     let route_response = route_details(&route_params).await?;
