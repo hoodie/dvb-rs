@@ -109,6 +109,15 @@ pub struct Params<'a> {
     pub assigedstops: bool,
     pub dvb: bool,
     pub format: Format,
+    /// Only return results within the VVO area.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub regional_only: Option<bool>,
+    /// Include stop shortcuts in results.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_shortcuts: Option<bool>,
+    /// Include line information in results.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub showlines: Option<bool>,
 }
 
 impl<'a> Default for Params<'a> {
@@ -120,6 +129,9 @@ impl<'a> Default for Params<'a> {
             assigedstops: Default::default(),
             dvb: true,
             format: Format::Json,
+            regional_only: None,
+            stop_shortcuts: None,
+            showlines: None,
         }
     }
 }
