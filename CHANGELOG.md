@@ -1,5 +1,29 @@
 # Changelog
 
+## [v0.8.0](https://github.com/hoodie/dvb-rs/compare/v0.7.4...v0.8.0) (2026-02-20)
+
+### Features
+
+* add route changes endpoint
+([3237b68](https://github.com/hoodie/dvb-rs/commit/3237b6822c793472e2666382b1e2added4d9e51a))
+
+### Fixes
+
+* add missing request params for point
+([6ef17d2](https://github.com/hoodie/dvb-rs/commit/6ef17d2fbbd4863ec43327a4aae25d036a511305))
+* add missing request params for route
+([698c69f](https://github.com/hoodie/dvb-rs/commit/698c69f019e372f8da11ec86a23201fd2d2348d9))
+* add/update missing route fields
+([8061e91](https://github.com/hoodie/dvb-rs/commit/8061e91decd3a5ee725eff396e73becdb29e9409))
+* add missing trip fields
+([5291ec9](https://github.com/hoodie/dvb-rs/commit/5291ec90fcbb447434b21deb44bb9a42458963d4))
+* add missing enum variants
+([a93b4cb](https://github.com/hoodie/dvb-rs/commit/a93b4cb23cf64f86d7ef7f278394b4d56153318c))
+* use POST requests where necessary
+([fe312df](https://github.com/hoodie/dvb-rs/commit/fe312df5fe8fc4e326c9bd8d733361cbb9c3c616))
+* add missing departure fields
+([6678be5](https://github.com/hoodie/dvb-rs/commit/6678be5067dbd0c1415a36b82e2d15e1d2b9d744))
+
 ### [v0.7.4](https://github.com/hoodie/dvb-rs/compare/v0.7.3...v0.7.4) (2026-01-11)
 
 #### Fixes
