@@ -3,7 +3,7 @@
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
-use crate::{DvbResponse, error::Result, time::DvbTime};
+use crate::{DvbResponse, common::ArrivalState, error::Result, time::DvbTime};
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
@@ -34,6 +34,9 @@ pub struct Stop {
     pub position: Position,
     pub scheduled_time: Option<bool>,
     pub time: DvbTime,
+    pub real_time: Option<DvbTime>,
+    pub state: Option<ArrivalState>,
+    pub occupancy: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
