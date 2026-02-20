@@ -167,6 +167,38 @@ const ROUTE_URL: &str = "https://webapi.vvo-online.de/tr/trips";
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
+pub struct MobilitySettings {
+    /// Accessibility level: `"None"`, `"Medium"`, `"High"`, or `"Individual"`.
+    pub mobility_restriction: Option<String>,
+    /// Allow solid stairs (only with `"Individual"` restriction).
+    pub solid_stairs: Option<bool>,
+    /// Allow escalators (only with `"Individual"` restriction).
+    pub escalators: Option<bool>,
+    /// Prefer fewest changes (only with `"Individual"` restriction).
+    pub least_change: Option<bool>,
+    /// Entrance requirement: `"Any"`, `"SmallStep"`, or `"NoStep"`.
+    pub entrance: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct StandardSettings {
+    /// Modes of transport to include.
+    pub mot: Option<Vec<String>>,
+    /// Maximum transfers: `"Unlimited"`, `"Two"`, `"One"`, or `"None"`.
+    pub max_changes: Option<String>,
+    /// Walking speed: `"VerySlow"`, `"Slow"`, `"Normal"`, `"Fast"`, or `"VeryFast"`.
+    pub walking_speed: Option<String>,
+    /// Maximum walking distance to a stop in minutes.
+    pub footpath_to_stop: Option<u32>,
+    /// Include nearby alternative stops.
+    pub include_alternative_stops: Option<bool>,
+    /// Extra charge filter: `""`, `"None"`, or `"LocalTraffic"`.
+    pub extra_charge: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct Params<'a> {
     /// Origin stop ID.
     pub origin: &'a str,
@@ -179,9 +211,15 @@ pub struct Params<'a> {
     /// Include short-term changes.
     pub shorttermchanges: bool,
     /// Response format (e.g., "json").
-    pub format: &'a str, // TODO: verify existence
+    pub format: &'a str,
     /// Intermediate stop ID.
-    pub via: Option<&'a str>, // TODO: verify existence
+    pub via: Option<&'a str>,
+    /// Accessibility preferences.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mobility_settings: Option<MobilitySettings>,
+    /// Journey preferences (transport modes, max changes, walking speed, etc.).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub standard_settings: Option<StandardSettings>,
 }
 
 pub async fn route_details_json<'a>(params: &Params<'a>) -> Result<Value> {
