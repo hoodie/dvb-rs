@@ -14,10 +14,12 @@ pub struct Platform {
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
 #[serde(rename_all = "PascalCase")]
+#[non_exhaustive]
 pub enum Position {
     Previous,
     Current,
     Next,
+    Onward,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]

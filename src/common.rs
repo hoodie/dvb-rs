@@ -6,9 +6,12 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
+#[non_exhaustive]
 pub enum ArrivalState {
     Delayed,
     InTime,
+    Earlier,
+    Cancelled,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
@@ -27,13 +30,34 @@ pub enum Mot {
     Footpath,
     RapidTransit,
     BusOnRequest,
+    RegioBus,
+    CitizenBus,
+    DemandBus,
+    SchoolBus,
+    ClockBus,
+    OverheadRailway,
+    Taxi,
+    StayForConnection,
+    StayInVehicle,
+    MobilityStairsUp,
+    MobilityStairsDown,
+    MobilityElevatorUp,
+    MobilityElevatorDown,
+    MobilityEscalatorUp,
+    MobilityEscalatorDown,
+    MobilityRampUp,
+    MobilityRampDown,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
+#[non_exhaustive]
 pub enum StatusCode {
     Ok,
     ValidationError,
     ServiceError,
+    InvalidRequest,
+    NoData,
+    ServerError,
 }
 
 #[derive(Serialize, Deserialize, JsonSchema, Clone, Debug)]
